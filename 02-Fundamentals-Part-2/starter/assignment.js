@@ -55,3 +55,27 @@
 //     : `john's BMI (${john.bmi} is higher than mark's (${mark.bmi}))`;
 
 // console.log(result);
+
+// #4
+// const bills = [22,295,176,440,37,105,10,1100,86,52];
+// const tips = [], totals = [];
+
+// function calcTip(bill) {
+//         return bill >= 50 && bill <= 300 
+//             ? bill * 0.15 : bill * 0.20;
+// }
+// let tip;
+// for(let i = 0; i < bills.length; ++i) {
+//     tip = calcTip(bills[i]);
+//     tips.push(tip);
+//     totals.push(tip + bills[i]);
+// }
+
+// console.log(tips, totals);
+
+// let totalOfTotals = 0;
+// for (let i = 0; i < totals.length; ++i) {
+//     totalOfTotals += totals[i];
+// }
+
+// console.log(bills.length, totalOfTotals, totalOfTotals/bills.length);
