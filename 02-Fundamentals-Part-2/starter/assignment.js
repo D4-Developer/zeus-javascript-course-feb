@@ -79,3 +79,15 @@
 // }
 
 // console.log(bills.length, totalOfTotals, totalOfTotals/bills.length);
+
+// #5
+
+const temperatures = [17, 21, 23];
+
+function printForecast(temperatures = []) {
+    for (let i = 0; i < temperatures.length; ++i) {
+        console.log(`${temperatures[i]}oC in ${i+1} days...`);
+    }    
+}
+
+printForecast(temperatures);
