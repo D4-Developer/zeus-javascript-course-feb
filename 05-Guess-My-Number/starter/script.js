@@ -30,6 +30,11 @@ function changeTitle(title) {
     numberObject.textContent = title;
 }
 
+function changeBackground(bgColor) {
+    document.body.style.backgroundColor = bgColor;
+    console.log('change background');
+}
+
 function completeGame() {
     msgObject.textContent = 'Correct Number!';
     changeHighScore();
