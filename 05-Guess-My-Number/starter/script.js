@@ -50,6 +50,17 @@ function completeGame() {
     myNumber = -1;
 }
 
+function restartGame() {
+    inputObject.value = '';
+    msgObject.textContent = 'Start guessing...';
+    score = 10;
+    scoreObject.textContent = score;
+    myNumber = Math.floor(Math.random() * 20) + 1;
+    changeTitle('?');
+    changeBackground('#222');
+    console.log('Game reseted');
+}
+
 function gameFunction(){
     if (myNumber == -1) return;
 
@@ -72,3 +83,4 @@ function gameFunction(){
 
 checkObject.addEventListener('click', gameFunction);
 
+resetGameObject.addEventListener('click', restartGame);
