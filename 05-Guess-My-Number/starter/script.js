@@ -30,6 +30,13 @@ function changeTitle(title) {
     numberObject.textContent = title;
 }
 
+function changeHighScore() {
+    if (score > highScore) {
+        highScore = score;
+        highscoreObject.textContent = highScore;
+    }
+}
+
 function changeBackground(bgColor) {
     document.body.style.backgroundColor = bgColor;
     console.log('change background');
