@@ -39,6 +39,7 @@ function completeGame() {
 }
 
 function gameFunction(){
+    if (myNumber == -1) return;
 
     const inputNumber = Number(inputObject.value);
     console.log(myNumber, inputNumber);
