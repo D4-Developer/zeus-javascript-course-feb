@@ -26,3 +26,10 @@ function hideOverlay_Modal() {
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
 }
+
+// keyPress events....
+// addEventListner should be on document object to acheive globally....
+
+document.addEventListener('keydown', function() {
+    console.log('a key is pressed....');
+});
