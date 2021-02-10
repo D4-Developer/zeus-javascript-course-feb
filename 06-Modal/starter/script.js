@@ -1,6 +1,7 @@
 'use strict';
 
-// document.querySelectorAll
+// document.querySelector() only returns the first matched element only...
+// document.querySelectorAll()
 const modals = document.querySelectorAll('.show-modal');
 console.log(modals);
 console.log(typeof modals );
