@@ -72,16 +72,10 @@ function resetCurrentScore() {
 }
 
 function changeActivePlayer() {
-    if (currentPlayer == 0) {
-        currentPlayer = 1;
-        player1.classList.remove('player--active');
-        player2.classList.add('player--active');
-    }
-    else {
-        currentPlayer = 0;
-        player1.classList.add('player--active');
-        player2.classList.remove('player--active');
-    }
+    if (currentPlayer == 0) currentPlayer = 1;
+    else currentPlayer = 0;
+    player1.classList.toggle('player--active');
+    player2.classList.toggle('player--active');
 }
 
 function switchPlayer() {
@@ -97,14 +91,29 @@ function rolldice() {
     else updateCurrentScore();
 }
 
+function announceWinner() {
+
+
+}
+
 function holdAction() {
     if (currentPlayer == 0) {
         firstTotal += firstCurrent;
         totalObj1.textContent = firstTotal;
+
+    // check for is firstPlayer wins or not...
+        if (firstTotal >= target)
+            announceWinner(0);
+        else switchPlayer();
     }
     else {
         secondTotal += secondCurrent;
         totalObj2.textContent = secondTotal;
+        
+    // check for is secondPlayer wins or not...
+        if (secondTotal >= target)
+            announceWinner(1);
+        else switchPlayer();
     }
 }
 
