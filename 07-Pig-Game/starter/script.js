@@ -1,8 +1,12 @@
 'use strict';
 
 let isGameOn; // boolean
+let diceNumber;
+let currentPlayer;
 let firstCurrent = 0, secondCurrent = 0;
 let firstTotal = 0, secondTotal = 0;
+
+const target = 50;
 
 const diceImg = document.querySelector('.dice');
 
@@ -15,12 +19,13 @@ const player1 = document.querySelector('.player--0');
 const player2 = document.querySelector('.player--1');
 
 // buttons....
-const newGameBtnObj = document.querySelector('btn--new');
-const rolldiceBtnObj = document.querySelector('btn--roll');
-const holdBtnObj = document.querySelector('btn--hold');
+const newGameBtnObj = document.querySelector('.btn--new');
+const rolldiceBtnObj = document.querySelector('.btn--roll');
+const holdBtnObj = document.querySelector('.btn--hold');
 
 function initializeGame() {
-    isGameOn = false;
+    isGameOn = true;
+    currentPlayer = 0
     firstCurrent = 0, secondCurrent = 0;
     firstTotal = 0, secondCurrent = 0;
     diceImg.classList.add('hide');
@@ -34,8 +39,59 @@ function initializeGame() {
 
 initializeGame();
 
+function getNumber() {
+    return Math.trunc(Math.random() * 6 + 1);
+}
+
+function updateCurrentScore() {
+    if (currentPlayer == 0) {
+        firstCurrent += diceNumber;
+        currentObj1.textContent = firstCurrent;
+    }
+    else {
+        secondCurrent += diceNumber;
+        currentObj2.textContent = secondCurrent;
+    }
+}
+
+function updateDiceImg() {
+    diceImg.classList.remove('hide');
+    // diceImg.setAttributesrc', `dice-${diceNumber}.png`);
+    diceImg.src = `dice-${diceNumber}.png`;
+}
+
+function resetCurrentScore() {
+    if (currentPlayer == 0) {
+        firstCurrent = 0;
+        currentObj1.textContent = firstCurrent;
+    }
+    else {
+        secondCurrent = 0;
+        currentObj2.textContent = secondCurrent;
+    }
+}
+
+function changePlayer() {
+    if (currentPlayer == 0) {
+        currentPlayer = 1;
+        
+    }
+    else {
+        currentPlayer = 0;
+    }
+}
+
+function switchPlayer() {
+    // reset the currentScore of currentPlayer....
+    resetCurrentScore();
+    changePlayer();
+}
+
 function rolldice() {
-    
+    diceNumber = getNumber();
+    updateDiceImg();
+    if (diceNumber == 1) switchPlayer();
+    else updateCurrentScore();
 }
 
 function holdAction() {
