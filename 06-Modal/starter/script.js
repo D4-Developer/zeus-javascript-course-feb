@@ -11,7 +11,12 @@ console.log(btnModals);
 console.log(typeof btnModals );
 
 for (let i = 0; i < btnModals.length; ++i)
-    console.log(btnModals[i].addEventListener('click', function() {
+    btnModals[i].addEventListener('click', function() {
         modal.classList.remove('hidden');
         overlay.classList.remove('hidden');
-    }));
+    });
+
+closeModal.addEventListener('click', function() {
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+});
