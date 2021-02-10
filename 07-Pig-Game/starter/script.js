@@ -98,7 +98,14 @@ function rolldice() {
 }
 
 function holdAction() {
-    
+    if (currentPlayer == 0) {
+        firstTotal += firstCurrent;
+        totalObj1.textContent = firstTotal;
+    }
+    else {
+        secondTotal += secondCurrent;
+        totalObj2.textContent = secondTotal;
+    }
 }
 
 newGameBtnObj.addEventListener('click', initializeGame);
