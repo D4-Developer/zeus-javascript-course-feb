@@ -25,9 +25,9 @@ const holdBtnObj = document.querySelector('.btn--hold');
 
 function initializeGame() {
     isGameOn = true;
-    currentPlayer = 0
+    currentPlayer = 0;
     firstCurrent = 0, secondCurrent = 0;
-    firstTotal = 0, secondCurrent = 0;
+    firstTotal = 0, secondTotal = 0;
     diceImg.classList.add('hide');
     player1.classList.add('player--active');
     player2.classList.remove('player--active');
@@ -35,7 +35,8 @@ function initializeGame() {
     totalObj1.textContent = firstTotal;
     currentObj2.textContent = secondCurrent;
     totalObj2.textContent = secondTotal;
-    
+    player1.classList.remove('player--winner');
+    player2.classList.remove('player--winner');
 }
 
 initializeGame();
@@ -86,6 +87,9 @@ function switchPlayer() {
 }
 
 function rolldice() {
+
+    if (!isGameOn) return;
+
     isHoldAvailable = true;
     diceNumber = getNumber();
     updateDiceImg();
