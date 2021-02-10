@@ -2,14 +2,16 @@
 
 // document.querySelector() only returns the first matched element only...
 // document.querySelectorAll()
-const modals = document.querySelectorAll('.show-modal');
+const btnModals = document.querySelectorAll('.show-modal');
 const overlay = document.querySelector('.overlay');
 const closeModal = document.querySelector('.close-modal');
+const modal = document.querySelector('.modal');
 
-console.log(modals);
-console.log(typeof modals );
+console.log(btnModals);
+console.log(typeof btnModals );
 
-for (let i = 0; i < modals.length; ++i)
-    console.log(modals[i].addEventListener('click', function() {
+for (let i = 0; i < btnModals.length; ++i)
+    console.log(btnModals[i].addEventListener('click', function() {
+        modal.classList.remove('hidden');
         overlay.classList.remove('hidden');
     }));
