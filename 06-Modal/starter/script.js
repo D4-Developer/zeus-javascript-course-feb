@@ -11,17 +11,18 @@ console.log(btnModals);
 console.log(typeof btnModals );
 
 for (let i = 0; i < btnModals.length; ++i)
-    btnModals[i].addEventListener('click', function() {
-        modal.classList.remove('hidden');
-        overlay.classList.remove('hidden');
-    });
+    btnModals[i].addEventListener('click', showOverlay_Modal);
 
-closeModal.addEventListener('click', function() {
+closeModal.addEventListener('click', hideOverlay_Modal);
+
+overlay.addEventListener('click', hideOverlay_Modal);
+
+function showOverlay_Modal() {
+    modal.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+}
+
+function hideOverlay_Modal() {
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
-});
-
-overlay.addEventListener('click', function() {
-    modal.classList.add('hidden');
-    overlay.classList.add('hidden');
-});
+}
