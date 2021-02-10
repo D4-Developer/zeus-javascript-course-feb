@@ -30,6 +30,11 @@ function hideOverlay_Modal() {
 // keyPress events....
 // addEventListner should be on document object to acheive globally....
 
-document.addEventListener('keydown', function() {
-    console.log('a key is pressed....');
+// addEventListener has event info related to it....
+document.addEventListener('keydown', function(event) {
+    // console.log('a key is pressed....');
+    // console.log(event);
+    console.log(event.key); // returns the which key is pressed....
+    if (event.key == 'Escape')
+        hideOverlay_Modal();
 });
