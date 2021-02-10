@@ -33,3 +33,16 @@ function initializeGame() {
 }
 
 initializeGame();
+
+function rolldice() {
+    
+}
+
+function holdAction() {
+    
+}
+
+newGameBtnObj.addEventListener('click', initializeGame);
+rolldiceBtnObj.addEventListener('click', rolldice);
+holdBtnObj.addEventListener('click', holdAction);
+
