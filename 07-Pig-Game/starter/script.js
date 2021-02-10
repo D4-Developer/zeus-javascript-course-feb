@@ -71,20 +71,23 @@ function resetCurrentScore() {
     }
 }
 
-function changePlayer() {
+function changeActivePlayer() {
     if (currentPlayer == 0) {
         currentPlayer = 1;
-        
+        player1.classList.remove('player--active');
+        player2.classList.add('player--active');
     }
     else {
         currentPlayer = 0;
+        player1.classList.add('player--active');
+        player2.classList.remove('player--active');
     }
 }
 
 function switchPlayer() {
     // reset the currentScore of currentPlayer....
     resetCurrentScore();
-    changePlayer();
+    changeActivePlayer();
 }
 
 function rolldice() {
