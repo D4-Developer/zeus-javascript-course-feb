@@ -35,6 +35,6 @@ document.addEventListener('keydown', function(event) {
     // console.log('a key is pressed....');
     // console.log(event);
     console.log(event.key); // returns the which key is pressed....
-    if (event.key == 'Escape')
+    if (event.key == 'Escape' && !modal.classList.contains('hidden'))
         hideOverlay_Modal();
 });
