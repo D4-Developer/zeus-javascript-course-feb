@@ -102,6 +102,7 @@ function announceWinner() {
     .classList.add('player--winner');
     isGameOn = false;
     isHoldAvailable = false;
+    diceImg.classList.add('hide');
 }
 
 function holdAction() {
