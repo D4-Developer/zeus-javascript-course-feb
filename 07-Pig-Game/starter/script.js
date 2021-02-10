@@ -1,6 +1,6 @@
 'use strict';
 
-let isGameOn; // boolean
+let isGameOn, isHoldAvailable; // boolean
 let diceNumber;
 let currentPlayer;
 let firstCurrent = 0, secondCurrent = 0;
@@ -35,6 +35,7 @@ function initializeGame() {
     totalObj1.textContent = firstTotal;
     currentObj2.textContent = secondCurrent;
     totalObj2.textContent = secondTotal;
+    
 }
 
 initializeGame();
@@ -85,6 +86,7 @@ function switchPlayer() {
 }
 
 function rolldice() {
+    isHoldAvailable = true;
     diceNumber = getNumber();
     updateDiceImg();
     if (diceNumber == 1) switchPlayer();
@@ -92,11 +94,16 @@ function rolldice() {
 }
 
 function announceWinner() {
-
-
+    document.querySelector(`.player--${currentPlayer}`)
+    .classList.add('player--winner');
+    isGameOn = false;
+    isHoldAvailable = false;
 }
 
 function holdAction() {
+    if (!isHoldAvailable) return;
+
+    isHoldAvailable = false;
     if (currentPlayer == 0) {
         firstTotal += firstCurrent;
         totalObj1.textContent = firstTotal;
