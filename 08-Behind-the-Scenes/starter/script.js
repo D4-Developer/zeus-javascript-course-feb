@@ -8,10 +8,12 @@ function calcAge(birthYear) {
         const output = `${firstName}, you are ${age}, born in ${birthYear}`; // np inherites the parent's scope
         console.log(output);
         if (birthYear >= 1996 && birthYear <= 2006) {
-            const ot = `oh you are millenial, ${firstName}`;
+            const ot = `oh you are millenial, ${firstName}`; // const & let has block--scope
+            var ott = ot; // var has nearest function's -- scope
             console.log(ot);
         }
-        console.log(ot); // -- error --
+        // console.log(ot); // -- error --
+        console.log(ott);
     }
 
 
