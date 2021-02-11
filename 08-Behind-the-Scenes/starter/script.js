@@ -2,7 +2,14 @@
 
 function calcAge(birthYear) {
     const age = 2021 - birthYear; // function--scope
-    console.log(firstName); // np
+    // console.log(firstName); // np
+    
+    function printAge() {
+        const output = `${firstName}, you are ${age}, born in ${birthYear}`; // np inherites the parent's scope
+        console.log(output);
+    }
+
+    printAge();
     return age;
 }
 
