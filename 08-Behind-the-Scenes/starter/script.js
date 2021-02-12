@@ -14,17 +14,17 @@ function calcAge(birthYear) {
             console.log(ot);
             
             var ott = ot; // var has nearest function's -- scope
-            function add(a,b) {
+            function add(a,b) { // has block--scope if 'scrict-mode'
                 return a+b;
             }
         }
         // console.log(ot); // -- error --
         console.log(ott); // np....
 
-        console.log(add(2,3)); // --error-- block scope of add function....
+        console.log(add(2,3)); // --error-- ONLY in STRICT MODE
     }
 
-    printAge();
+    // printAge();
     return age;
 }
 
@@ -34,3 +34,13 @@ calcAge(2000);
 // lexical error :) ReferenceError: can't access lexical declaration 'firstName' before initialization....
 //// calcAge(2000); // this will generate the -- error -- 
 //// const firstName = 'darshan';
+
+// #hoisting & TDZ (temporal dead zone)
+
+console.log(a);
+// console.log(b); // -- error --
+// console.log(c);
+
+var a = 'var';
+let b = 'let'; 
+const c = 'const';
