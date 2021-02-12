@@ -36,11 +36,26 @@ calcAge(2000);
 //// const firstName = 'darshan';
 
 // #hoisting & TDZ (temporal dead zone)
-
+// variables
 console.log(a);
 // console.log(b); // -- error --
-// console.log(c);
+// console.log(c); // -- error --
 
 var a = 'var';
 let b = 'let'; 
 const c = 'const';
+
+// functions
+console.log(aa(2,3));
+console.log(aaa(2,3)); // -- error --
+console.log(aaaa(2,3));// -- error --
+
+function aa(a, b) {
+    return a+b;
+}
+
+const fn = function aaa(a, b){
+    return a+b;
+}
+
+const aaaa = (a, b) => a+b;
