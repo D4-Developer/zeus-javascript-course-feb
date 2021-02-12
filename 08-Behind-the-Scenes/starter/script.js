@@ -14,9 +14,14 @@ function calcAge(birthYear) {
             console.log(ot);
             
             var ott = ot; // var has nearest function's -- scope
+            function add(a,b) {
+                return a+b;
+            }
         }
         // console.log(ot); // -- error --
         console.log(ott); // np....
+
+        console.log(add(2,3)); // --error-- block scope of add function....
     }
 
     printAge();
