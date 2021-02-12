@@ -54,8 +54,17 @@ function fnDeclaration(a, b) {
     return a+b;
 }
 
-const fnExpression = function (a, b){
+// const fnExpression = function (a, b){
+//     return a+b;
+// }
+
+// const fnArrow = (a, b) => a+b;
+
+console.log(fnExpression(2,3)); // -- error -- calling undefined(2,3)....
+console.log(fnArrow(2,3));// -- error-msg:) fnExpression/fnArrow is not a function
+
+var fnExpression = function (a, b){
     return a+b;
 }
 
-const fnArrow = (a, b) => a+b;
+var fnArrow = (a, b) => a+b;
