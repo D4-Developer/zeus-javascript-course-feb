@@ -46,16 +46,16 @@ let b = 'let';
 const c = 'const';
 
 // functions
-console.log(aa(2,3));
-console.log(aaa(2,3)); // -- error --
-console.log(aaaa(2,3));// -- error --
+console.log(fnDeclaration(2,3));
+console.log(fnExpression(2,3)); // -- error --
+console.log(fnArrow(2,3));// -- error --
 
-function aa(a, b) {
+function fnDeclaration(a, b) {
     return a+b;
 }
 
-const fn = function aaa(a, b){
+const fnExpression = function (a, b){
     return a+b;
 }
 
-const aaaa = (a, b) => a+b;
+const fnArrow = (a, b) => a+b;
