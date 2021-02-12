@@ -80,38 +80,72 @@
 // console.log(y === window.y); // false
 // console.log(z === window.z); // false
 
-// # this keyword.... not a STATIC value
-// special variable that is created for every context (every function)
-// this ketyword never point to a Function or a variable
+// // # this keyword.... not a STATIC value
+// // special variable that is created for every context (every function)
+// // this ketyword never point to a Function or a variable
 
-// console.log(this); // -- window object --
+// // console.log(this); // -- window object --
 
-function cAge(birthYear) {
-    // console.log(this); // -- window object --
-    console.log(2021 - birthYear);
-};  cAge(2000);
-const cAgeEx = function (birthYear) {
-    console.log(this); // -- undefined (strict-mode) -- otherwise window object
+// function cAge(birthYear) {
+//     // console.log(this); // -- window object --
+//     console.log(2021 - birthYear);
+// };  cAge(2000);
+// const cAgeEx = function (birthYear) {
+//     console.log(this); // -- undefined (strict-mode) -- otherwise window object
 
-};  cAgeEx(2000);
-const cAgeArr = birthYear => {
-    console.log(this); // arrow fn don't have this scope 
-    // => so it will use it's parent's this keyword.. in this it's window object
-};  cAgeArr(2020);
+// };  cAgeEx(2000);
+// const cAgeArr = birthYear => {
+//     console.log(this); // arrow fn don't have this scope 
+//     // => so it will use it's parent's this keyword.. in this it's window object
+// };  cAgeArr(2020);
 
-const darshan = {
-    birthYear: 2000,
-    calcAge: function() {
-        console.log(2020 - this.birthYear);
-    }
-};
-darshan.calcAge();
+// const darshan = {
+//     birthYear: 2000,
+//     calcAge: function() {
+//         console.log(2020 - this.birthYear);
+//     }
+// };
+// darshan.calcAge();
 
-const tirth = {
-    birthYear: 1999
-};
-tirth.calcAge = darshan.calcAge; // method borrowing....
-tirth.calcAge();
+// const tirth = {
+//     birthYear: 1999
+// };
+// tirth.calcAge = darshan.calcAge; // method borrowing....
+// tirth.calcAge();
 
-const f = darshan.calcAge;
-f(); // -- error -- because this keyword is undefined & this.birthYear throws the error
+// const f = darshan.calcAge;
+// f(); // -- error -- because this keyword is undefined & this.birthYear throws the error
+
+///////////////////////////////////////
+// Regular Functions vs. Arrow Functions
+// var firstName = 'Matilda';
+
+const jonas = {
+    firstName: 'Jonas',
+    year: 1991,
+    calcAge: function () {
+      // console.log(this);
+      console.log(2037 - this.year);
+  
+      // Solution 1
+      // const self = this; // self or that
+      // const isMillenial = function () {
+      //   console.log(self);
+      //   console.log(self.year >= 1981 && self.year <= 1996);
+      // };
+  
+      // Solution 2
+      const isMillenial = () => {
+        console.log(this);
+        console.log(this.year >= 1981 && this.year <= 1996);
+      };
+      isMillenial();
+    },
+  
+    greet: () => {
+      console.log(this);
+      console.log(`Hey ${this.firstName}`);
+    },
+  };
+  jonas.greet();
+  jonas.calcAge();
