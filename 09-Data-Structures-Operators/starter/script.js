@@ -73,6 +73,10 @@ const restaurant = {
 // console.log(p, q, r, s);
 
 //////////////////////////// Object Destucturing :: operator = {}
-// need to specify which actual keys of restaurant object is needed & it also stores in that variables;
-const { name, openingHours, starterMenu } = restaurant; 
-console.log(name, openingHours, starterMenu);
+// // need to specify which actual keys of restaurant object is needed & it also stores in that variables;
+// const { name, openingHours, starterMenu } = restaurant; 
+// console.log(name, openingHours, starterMenu);
+
+// // explicitly change the variable name of retriving object keys;
+const { name: newName, openingHours: open, starterMenu: starter} = restaurant;
+console.log(newName, open, starter);
