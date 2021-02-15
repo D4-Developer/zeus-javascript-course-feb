@@ -287,8 +287,12 @@ const restaurant = {
 
 // // :::::: nullish Coalescing operator ??
 // // return the first value if first is not null/undefined , otherwise return second
-let guests1 = restaurant.numGuest ?? 10;
-console.log(guests1);
-restaurant.numGuest = 0; // now guests1 should be 0....but it's not
-guests1 = restaurant.numGuest ?? 10;
-console.log(guests1);
+// let guests1 = restaurant.numGuest ?? 10;
+// console.log(guests1);
+// restaurant.numGuest = 0; // now guests1 should be 0....but it's not
+// guests1 = restaurant.numGuest ?? 10;
+// console.log(guests1);
+
+const Menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of Menu) console.log(item);
