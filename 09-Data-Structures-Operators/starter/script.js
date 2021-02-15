@@ -92,9 +92,13 @@ const restaurant = {
 // console.log(menu);
 
 // // Muteting variable;
-let a = 111;
-let b = 999;
-const obj = { a: 23, b:7, c: 14 };
-// {a, b} = obj; // -- error -- can't assign value to a code block;
-({a,b } = obj);
-console.log(a,b);
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b:7, c: 14 };
+// // {a, b} = obj; // -- error -- can't assign value to a code block;
+// ({a,b } = obj);
+// console.log(a,b);
+
+// // Nested objects destructuring && explicitly set key(variable) name;
+const { fri: {open : ope, close: cls} } = restaurant.openingHours;
+console.log(ope, cls);
