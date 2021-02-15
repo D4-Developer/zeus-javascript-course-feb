@@ -176,9 +176,15 @@ const restaurant = {
 
 // :::::objects with restriction in spreas operator
 
-const newRestaurant = {
-  foundedIn: 1998,
-  ...restaurant,
-  founder: 'founder-name'
-};
-console.log(newRestaurant);
+// const newRestaurant = {
+//   foundedIn: 1998,
+//   ...restaurant,
+//   founder: 'founder-name'
+// };
+// console.log(newRestaurant);
+
+// copy object
+const restaurantCopy = {...restaurant};
+restaurantCopy.name = 'New-name';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
