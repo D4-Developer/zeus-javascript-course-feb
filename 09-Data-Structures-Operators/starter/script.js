@@ -148,3 +148,13 @@ const mainMenuCopy = [...restaurant.mainMenu];
 // merge array
 const menu = [...restaurant.starterMenu, ...mainMenuCopy];
 console.log(menu);
+
+
+//// :::::::::::: Iterables : array, string, maps, sets
+//// :::::::::::: not on Object;
+
+const firstName = 'Rathod';
+const lastName = 'Darshan';
+const fullName = [...firstName, ...lastName];
+console.log(fullName);
+// console.log(`${...firstName}`); // -- error --
