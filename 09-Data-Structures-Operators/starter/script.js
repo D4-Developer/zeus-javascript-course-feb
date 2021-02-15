@@ -118,9 +118,26 @@ const restaurant = {
 //   starterIndex: 3
 // });
 
-// set Default value in function arguments in object kays destructuring;
-restaurant.orderDelivery({
-  address: 'city, state....',
-  mainIndex: 2,
-  starterIndex: 3
-});
+// // set Default value in function arguments in object kays destructuring;
+// restaurant.orderDelivery({
+//   address: 'city, state....',
+//   mainIndex: 2,
+//   starterIndex: 3
+// });
+
+
+
+// // :::::::::::::::::::::::::: array spread operator ...
+const arr = [3, 4, 5];
+const badArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badArr);
+
+const goodArr = [1, 2, ...arr]; // better approach
+console.log(goodArr);
+console.log([1, 2, arr]);
+
+console.log(3, 4, 5);
+console.log(...arr);
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
