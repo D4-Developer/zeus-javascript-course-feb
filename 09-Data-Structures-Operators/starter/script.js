@@ -135,6 +135,7 @@ const restaurant = {
 
 
 // // :::::::::::::::::::::::::: array spread operator ...
+// used on right hand side of = sign;
 // const arr = [3, 4, 5];
 // const badArr = [1, 2, arr[0], arr[1], arr[2]];
 // console.log(badArr);
@@ -183,8 +184,31 @@ const restaurant = {
 // };
 // console.log(newRestaurant);
 
-// copy object
-const restaurantCopy = {...restaurant};
-restaurantCopy.name = 'New-name';
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
+// // copy object
+// const restaurantCopy = {...restaurant};
+// restaurantCopy.name = 'New-name';
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
+
+
+// // ::::::::::::::: rest-pattern;
+// // reverse of spread oprator;
+// // left-hand side of = oprator;
+// // rest must be in last position of Destructuring;
+// // only 1 rest is allowed
+
+// SPREAD, becasue of RIGHT side of =
+const arrr = [1,2, ...[3,4,5]];
+
+// REST, because of LEFT side of =
+const [ele1, ele2, ...ele3Arr] = arrr;
+console.log(ele1);
+console.log(ele2);
+console.log(ele3Arr);
+
+const [pizza, ,risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu
+];
+console.log(pizza, risotto);
+console.log(otherFood);
