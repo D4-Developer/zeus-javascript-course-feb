@@ -296,3 +296,16 @@ const restaurant = {
 const Menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
 for (const item of Menu) console.log(item);
+
+console.log(Menu.entries());
+console.log([...Menu.entries()]); // returns separate array for all entries
+
+// too confusing for loop
+for (const item of Menu.entries()) 
+  console.log(`${item[0] + 1}: ${item[1]}`);
+
+console.log();
+
+// Destructuring of entries elements one by one
+for (const [i, el] of Menu.entries())
+  console.log(`${i + 1}: ${el}`);
