@@ -197,18 +197,27 @@ const restaurant = {
 // // rest must be in last position of Destructuring;
 // // only 1 rest is allowed
 
-// SPREAD, becasue of RIGHT side of =
-const arrr = [1,2, ...[3,4,5]];
+// :: 1) Destructuring
 
-// REST, because of LEFT side of =
-const [ele1, ele2, ...ele3Arr] = arrr;
-console.log(ele1);
-console.log(ele2);
-console.log(ele3Arr);
+// // :::: array - rest oprator
+// // SPREAD, becasue of RIGHT side of =
+// const arrr = [1,2, ...[3,4,5]];
 
-const [pizza, ,risotto, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu
-];
-console.log(pizza, risotto);
-console.log(otherFood);
+// // REST, because of LEFT side of =
+// const [ele1, ele2, ...ele3Arr] = arrr;
+// console.log(ele1);
+// console.log(ele2);
+// console.log(ele3Arr);
+
+// const [pizza, ,risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu
+// ];
+// console.log(pizza, risotto);
+// console.log(otherFood);
+
+// //Objects - rest operator
+
+const {sat, ...weekDays} = restaurant.openingHours;
+console.log(sat);
+console.log(weekDays);
