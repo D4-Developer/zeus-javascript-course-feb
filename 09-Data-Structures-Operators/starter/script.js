@@ -26,6 +26,12 @@ const restaurant = {
     console.log(`Here is your delicios pasta with,
      ${ing1} ${ing2} ${ing3}`);
   },
+
+  // // rest - operator in function arguments;
+  orderPizza: function(coldDrink, ...pizzaIngredients) {
+    console.log('your coldDrink = ' + coldDrink);
+    console.log('pizza ingredients = '+ pizzaIngredients);
+  },
   openingHours: {
     thu: {
       open: 12,
@@ -224,17 +230,21 @@ const restaurant = {
 
 // // :: 2) Functions
 
-const add = function(...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; ++i)
-    sum += numbers[i];
+// const add = function(...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; ++i)
+//     sum += numbers[i];
   
-    console.log(sum);
-}
+//   console.log(sum);
+// }
 
-add(1, 2);
-add(1, 2, 3);
-add(1, 2, 3, 4, 5, 6, 7);
+// add(1, 2);
+// add(1, 2, 3);
+// add(1, 2, 3, 4, 5, 6, 7);
 
-const xArr = [10, 20, 30, 40];
-add(...xArr);
+// const xArr = [10, 20, 30, 40];
+// add(...xArr);
+
+// // 3) other edge cases;
+
+restaurant.orderPizza('coke', 'chesse', 'onion', 'Pepsicum');
