@@ -14,6 +14,11 @@ const restaurant = {
   order: function(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+  // Destructing object keys in function arguments....
+  orderDelivery: function({starterIndex, mainIndex, time, address}) {
+    console.log(`order received: ${this.starterMenu[starterIndex]} and 
+    ${this.mainMenu[mainIndex]} will be deliver to ${address} at ${time}`);
+  },
   openingHours: {
     thu: {
       open: 12,
@@ -28,6 +33,7 @@ const restaurant = {
       close: 24,
     },
   },
+
 };
 
 ///////////////////////// Array - Destructuring .... operator = []
@@ -100,5 +106,14 @@ const restaurant = {
 // console.log(a,b);
 
 // // Nested objects destructuring && explicitly set key(variable) name;
-const { fri: {open : ope, close: cls} } = restaurant.openingHours;
-console.log(ope, cls);
+// const { fri: {open : ope, close: cls} } = restaurant.openingHours;
+// console.log(ope, cls);
+
+
+// Destructing object keys in function arguments....
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'city, state....',
+  mainIndex: 2,
+  starterIndex: 3
+});
