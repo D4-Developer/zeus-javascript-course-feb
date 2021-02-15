@@ -85,6 +85,16 @@ const restaurant = {
 // } = restaurant;
 // console.log(newName, open, starter);
 
-// set Default value in object - destucturing;
-const {city = '-1', starterMenu: menu = []} = restaurant;
-console.log(city, menu);
+// // set Default value in object - destucturing;
+// const {city = '-1', state ,starterMenu: menu = []} = restaurant;
+// console.log(city);
+// console.log(state);
+// console.log(menu);
+
+// // Muteting variable;
+let a = 111;
+let b = 999;
+const obj = { a: 23, b:7, c: 14 };
+// {a, b} = obj; // -- error -- can't assign value to a code block;
+({a,b } = obj);
+console.log(a,b);
