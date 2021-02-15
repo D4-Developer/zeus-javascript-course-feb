@@ -56,5 +56,12 @@ const restaurant = {
 // console.log(f, third);
 
 // Receive 2 value(array) from a function && destuctured it....
-const [starter, main] = restaurant.order(3, 2);
-console.log(starter, main);
+// const [starter, main] = restaurant.order(3, 2);
+// console.log(starter, main);
+
+// // Nested Destructuring....
+const nested = [2, 4, [5, 6]];
+// const [i, ,j] = nested;
+// console.log(i, j);
+const [ii, ,[jj, kk]] = nested;
+console.log(ii, jj, kk); 
