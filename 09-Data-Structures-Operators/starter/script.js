@@ -128,16 +128,23 @@ const restaurant = {
 
 
 // // :::::::::::::::::::::::::: array spread operator ...
-const arr = [3, 4, 5];
-const badArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badArr);
+// const arr = [3, 4, 5];
+// const badArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badArr);
 
-const goodArr = [1, 2, ...arr]; // better approach
-console.log(goodArr);
-console.log([1, 2, arr]);
+// const goodArr = [1, 2, ...arr]; // better approach
+// console.log(goodArr);
+// console.log([1, 2, arr]);
 
-console.log(3, 4, 5);
-console.log(...arr);
+// console.log(3, 4, 5);
+// console.log(...arr);
 
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu);
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu);
+
+// copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+
+// merge array
+const menu = [...restaurant.starterMenu, ...mainMenuCopy];
+console.log(menu);
