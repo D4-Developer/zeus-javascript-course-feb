@@ -78,5 +78,13 @@ const restaurant = {
 // console.log(name, openingHours, starterMenu);
 
 // // explicitly change the variable name of retriving object keys;
-const { name: newName, openingHours: open, starterMenu: starter} = restaurant;
-console.log(newName, open, starter);
+// const { 
+//   name: newName,
+//   openingHours: open,
+//   starterMenu: starter
+// } = restaurant;
+// console.log(newName, open, starter);
+
+// set Default value in object - destucturing;
+const {city = '-1', starterMenu: menu = []} = restaurant;
+console.log(city, menu);
