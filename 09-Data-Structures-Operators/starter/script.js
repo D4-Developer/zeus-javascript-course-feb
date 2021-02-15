@@ -14,10 +14,17 @@ const restaurant = {
   order: function(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-  // Destructing object keys in function arguments....
+
+  // // Destructuring object keys in function arguments....
   orderDelivery: function({starterIndex, mainIndex, time = '10:00', address}) {
     console.log(`order received: ${this.starterMenu[starterIndex]} and 
     ${this.mainMenu[mainIndex]} will be deliver to ${address} at ${time}`);
+  },
+
+  // // Destructuring Array args in function using spread operator;
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicios pasta with,
+     ${ing1} ${ing2} ${ing3}`);
   },
   openingHours: {
     thu: {
@@ -143,18 +150,25 @@ const restaurant = {
 // console.log(newMenu);
 
 // copy array
-const mainMenuCopy = [...restaurant.mainMenu];
+// const mainMenuCopy = [...restaurant.mainMenu];
 
-// merge array
-const menu = [...restaurant.starterMenu, ...mainMenuCopy];
-console.log(menu);
+// // merge array
+// const menu = [...restaurant.starterMenu, ...mainMenuCopy];
+// console.log(menu);
 
 
 //// :::::::::::: Iterables : array, string, maps, sets
 //// :::::::::::: not on Object;
 
-const firstName = 'Rathod';
-const lastName = 'Darshan';
-const fullName = [...firstName, ...lastName];
-console.log(fullName);
+// const firstName = 'Rathod';
+// const lastName = 'Darshan';
+// const fullName = [...firstName, ...lastName];
+// console.log(fullName);
 // console.log(`${...firstName}`); // -- error --
+
+
+// Array spread operator in function arguments;
+const ingredients = [prompt("Lets's make Pasta! Ingredient1"),prompt("Lets's make Pasta! Ingredient2"),prompt("Lets's make Pasta! Ingredient3")];
+
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+restaurant.orderPasta(...ingredients);
