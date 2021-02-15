@@ -11,7 +11,9 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
+  order: function(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
   openingHours: {
     thu: {
       open: 12,
@@ -30,18 +32,17 @@ const restaurant = {
 
 ///////////////////////// Array - Destructuring .... operator = []
 // // #1
-const arr = [1,2,3,4];
-const [x,y,z] = arr; // first destructure & then assign on left side variable based on index....
-
-console.log(x, y, z);
+// const arr = [1,2,3,4];
+// const [x,y,z] = arr; // first destructure & then assign on left side variable based on index....
+// console.log(x, y, z);
 
 // // #2
-const [first, second] = restaurant.categories;
-console.log(first, second);
+// const [first, second] = restaurant.categories;
+// console.log(first, second);
 
 // // #3 leave a hole in destructing operator....
-let [f, ,third] = restaurant.categories;
-console.log(f, third);
+// let [f, ,third] = restaurant.categories;
+// console.log(f, third);
 
 // // #4 switching/swaping variables;
 // // traditional way using a new temp variable....
@@ -51,5 +52,9 @@ console.log(f, third);
 // console.log(f, third);
 
 // // swap using destructing operator;
-[f, third] = [third, f];
-console.log(f, third);
+// [f, third] = [third, f];
+// console.log(f, third);
+
+// Receive 2 value(array) from a function && destuctured it....
+const [starter, main] = restaurant.order(3, 2);
+console.log(starter, main);
