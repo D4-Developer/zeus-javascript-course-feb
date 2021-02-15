@@ -27,3 +27,14 @@ const restaurant = {
     },
   },
 };
+
+///////////////////////// Array - Destructuring ....
+// // #1
+const arr = [1,2,3,4];
+const [x,y,z] = arr; // first destructure & then assign on left side variable based on index....
+
+console.log(x, y, z);
+
+// // #2
+const [first, second] = restaurant.categories;
+console.log(first, second);
