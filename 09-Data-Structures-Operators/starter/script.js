@@ -247,4 +247,41 @@ const restaurant = {
 
 // // 3) other edge cases;
 
-restaurant.orderPizza('coke', 'chesse', 'onion', 'Pepsicum');
+// restaurant.orderPizza('coke', 'chesse', 'onion', 'Pepsicum');
+
+// :::: logical operator
+// use ANY data type, return ANY(truthy value) data type,
+// short-circuiting....
+// returns first truthy value or last value....
+// used to set default vaule ::::
+console.log('------ OR ------');
+console.log(4 || 'darshan');
+console.log(0 || 'zero');
+console.log('' || 'darshan');
+console.log(true || 'any');
+console.log(undefined || null);
+console.log(undefined || 0 || '' || 'darshan' || 23 || null);
+
+let guests1 = restaurant.numGuest || 10;
+console.log(guests1);
+restaurant.numGuest = 0; // now guests1 should be 0....but it's not
+guests1 = restaurant.numGuest || 10;
+console.log(guests1);
+
+console.log();
+console.log('------ AND ------');
+// opposite of OR 
+// return the first falsy value or last value ::::
+// used to execute the code if first value/fn/ exists ::::
+console.log(0 && 'darshan');
+console.log(5 && 'darshan');
+console.log('hello' && 23 && 0);
+
+// ex:
+if (restaurant.orderPizza) {
+  // if above function exists then this block will be executed;
+  restaurant.orderPizza('d1', 'e1', 'e2', 'e3');
+}
+// same as above if statement block;
+restaurant.orderPizza && restaurant.orderPizza('d1', 'e1', 'e2', 'e3');
+
