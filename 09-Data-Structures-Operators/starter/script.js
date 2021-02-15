@@ -33,19 +33,19 @@ const restaurant = {
 ///////////////////////// Array - Destructuring .... operator = []
 // // #1
 // const arr = [1,2,3,4];
-// const [x,y,z] = arr; // first destructure & then assign on left side variable based on index....
+// const [x,y,z] = arr; // first destructure & then assign on left side variable based on index;
 // console.log(x, y, z);
 
 // // #2
 // const [first, second] = restaurant.categories;
 // console.log(first, second);
 
-// // #3 leave a hole in destructing operator....
+// // #3 leave a hole in destructing operator;
 // let [f, ,third] = restaurant.categories;
 // console.log(f, third);
 
 // // #4 switching/swaping variables;
-// // traditional way using a new temp variable....
+// // traditional way using a new temp variable;
 // const temp = f;
 // f = third;
 // third = temp;
@@ -55,13 +55,19 @@ const restaurant = {
 // [f, third] = [third, f];
 // console.log(f, third);
 
-// Receive 2 value(array) from a function && destuctured it....
+// Receive 2 value(array) from a function && destuctured it;
 // const [starter, main] = restaurant.order(3, 2);
 // console.log(starter, main);
 
-// // Nested Destructuring....
-const nested = [2, 4, [5, 6]];
+// // Nested Destructuring;
+// const nested = [2, 4, [5, 6]];
 // const [i, ,j] = nested;
 // console.log(i, j);
-const [ii, ,[jj, kk]] = nested;
-console.log(ii, jj, kk); 
+// const [ii, ,[jj, kk]] = nested;
+// console.log(ii, jj, kk); 
+
+// // set Default value in Destructuring;
+let [p = 0, q = 1, r = 2, s] = [4, 5, 6];
+console.log(p, q, r, s);
+[p = 0, q = 1, r = 2, s] = [4, ,5, 6];
+console.log(p, q, r, s);
