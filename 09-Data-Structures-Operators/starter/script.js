@@ -67,7 +67,12 @@ const restaurant = {
 // console.log(ii, jj, kk); 
 
 // // set Default value in Destructuring;
-let [p = 0, q = 1, r = 2, s] = [4, 5, 6];
-console.log(p, q, r, s);
-[p = 0, q = 1, r = 2, s] = [4, ,5, 6];
-console.log(p, q, r, s);
+// let [p = 0, q = 1, r = 2, s] = [4, 5, 6];
+// console.log(p, q, r, s);
+// [p = 0, q = 1, r = 2, s] = [4, ,5, 6];
+// console.log(p, q, r, s);
+
+//////////////////////////// Object Destucturing :: operator = {}
+// need to specify which actual keys of restaurant object is needed & it also stores in that variables;
+const { name, openingHours, starterMenu } = restaurant; 
+console.log(name, openingHours, starterMenu);
