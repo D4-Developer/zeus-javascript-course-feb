@@ -15,7 +15,7 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
   // Destructing object keys in function arguments....
-  orderDelivery: function({starterIndex, mainIndex, time, address}) {
+  orderDelivery: function({starterIndex, mainIndex, time = '10:00', address}) {
     console.log(`order received: ${this.starterMenu[starterIndex]} and 
     ${this.mainMenu[mainIndex]} will be deliver to ${address} at ${time}`);
   },
@@ -110,9 +110,16 @@ const restaurant = {
 // console.log(ope, cls);
 
 
-// Destructing object keys in function arguments....
+// // Destructing object keys in function arguments....
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'city, state....',
+//   mainIndex: 2,
+//   starterIndex: 3
+// });
+
+// set Default value in function arguments in object kays destructuring;
 restaurant.orderDelivery({
-  time: '22:30',
   address: 'city, state....',
   mainIndex: 2,
   starterIndex: 3
