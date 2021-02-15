@@ -218,6 +218,23 @@ const restaurant = {
 
 // //Objects - rest operator
 
-const {sat, ...weekDays} = restaurant.openingHours;
-console.log(sat);
-console.log(weekDays);
+// const {sat, ...weekDays} = restaurant.openingHours;
+// console.log(sat);
+// console.log(weekDays);
+
+// // :: 2) Functions
+
+const add = function(...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; ++i)
+    sum += numbers[i];
+  
+    console.log(sum);
+}
+
+add(1, 2);
+add(1, 2, 3);
+add(1, 2, 3, 4, 5, 6, 7);
+
+const xArr = [10, 20, 30, 40];
+add(...xArr);
