@@ -167,8 +167,18 @@ const restaurant = {
 // console.log(`${...firstName}`); // -- error --
 
 
-// Array spread operator in function arguments;
-const ingredients = [prompt("Lets's make Pasta! Ingredient1"),prompt("Lets's make Pasta! Ingredient2"),prompt("Lets's make Pasta! Ingredient3")];
+// // Array spread operator in function arguments;
+// const ingredients = [prompt("Lets's make Pasta! Ingredient1"),prompt("Lets's make Pasta! Ingredient2"),prompt("Lets's make Pasta! Ingredient3")];
 
-restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
-restaurant.orderPasta(...ingredients);
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+// restaurant.orderPasta(...ingredients);
+
+
+// :::::objects with restriction in spreas operator
+
+const newRestaurant = {
+  foundedIn: 1998,
+  ...restaurant,
+  founder: 'founder-name'
+};
+console.log(newRestaurant);
