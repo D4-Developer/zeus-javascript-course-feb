@@ -351,10 +351,15 @@ const restaurant = {
 
 ///// ::::: Object.keys(); also known as properties;
 
-const properties = Object.keys(restaurant.openingHours);
+// const properties = Object.keys(restaurant.openingHours);
 
-let openStr =  `We are open on ${properties.length} days: `;
-for (const day of properties) 
-  openStr += day + ', ';
+// let openStr =  `We are open on ${properties.length} days: `;
+// for (const day of properties) 
+//   openStr += day + ', ';
 
-console.log(openStr);
+// console.log(openStr);
+
+
+///// ::::: Object.values();
+const values = Object.values(restaurant.openingHours);
+console.log(values);
