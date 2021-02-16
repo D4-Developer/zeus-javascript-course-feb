@@ -464,3 +464,43 @@ console.log(map);
 // map.set('heading', document.querySelector('h1'));
 // map.get('heading').textContent = 'Woahhhh'; // this'll change the text content of <h1>
 
+// // initializing Map key-value without set();
+
+const question = new Map(
+  [
+    ['question', 'what is best programming languauge?'],
+    [1, 'C++'],
+    [2, 'Dart'],
+    [3, 'python'],
+    [4, 'java'],
+    [true, 'Correct!!!!'],
+    [false, 'Try again'],
+    ['ans', 1]
+  ]
+);
+console.log(question);
+console.log(question[2]); // undefined
+
+// Map is a typeof Iterator
+for (const [key, value] of question)
+  if (typeof key == 'number')
+    console.log(`Option ${key}: ${value}`);
+
+
+// convert Object to Map
+const hoursMap = new Map(Object.entries(restaurant.openingHours));
+console.log(hoursMap);
+
+
+// const selected = Number(prompt('enter your choise '));
+const selected = 1;
+console.log(question.get(question.get('ans') == selected));
+
+
+// convert map to array 
+const mapToArray = [...question]; // ... spread (unpacking) operator;
+// console.log(mapToArray);
+
+console.log(question.entries());
+console.log([...question.keys()]); // handy approach to use in future as array
+console.log(question.values());
