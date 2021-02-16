@@ -315,35 +315,46 @@ const restaurant = {
 ////// :::::::::::
 // // Optional chaining.... ?.
 
-// hence mon is undefinded, so error:) 
-// console.log(restaurant.openingHours.mon.open); // -- error -- 
-if (restaurant.openingHours.mon) // openingHours or open may also be undefined....
-  console.log(restaurant.openingHours.mon.open);
-else
-  console.log('openingHours.mon is undefined');
+// // hence mon is undefinded, so error:) 
+// // console.log(restaurant.openingHours.mon.open); // -- error -- 
+// if (restaurant.openingHours.mon) // openingHours or open may also be undefined....
+//   console.log(restaurant.openingHours.mon.open);
+// else
+//   console.log('openingHours.mon is undefined');
 
-// same as above with optional chaining
-// .open will be only accessed if all left hand side propertied exists 
-console.log(restaurant.openingHours.mon?.open);
-// restuarant.openingHours.mon must be not undefined, null to be accessed open;
-console.log(restaurant.openingHours?.mon?.open);
+// // same as above with optional chaining
+// // .open will be only accessed if all left hand side propertied exists 
+// console.log(restaurant.openingHours.mon?.open);
+// // restuarant.openingHours.mon must be not undefined, null to be accessed open;
+// console.log(restaurant.openingHours?.mon?.open);
 
-// very good ex of Nullish & Opetional Chaining operator ?? && ?.
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// // very good ex of Nullish & Opetional Chaining operator ?? && ?.
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-for (const day of days) {
-  // console.log(day);
-  const open = restaurant.openingHours[day]?.open ?? 'closed';
-  console.log(`On, ${day}, we open at ${open}`);
-}
+// for (const day of days) {
+//   // console.log(day);
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`On, ${day}, we open at ${open}`);
+// }
 
-// Methods
-console.log(restaurant.order?.(0,1) ?? 'Method does not exist');
-console.log(restaurant.reserve?.(0,1) ?? 'Method does not exist');
+// // Methods
+// console.log(restaurant.order?.(0,1) ?? 'Method does not exist');
+// console.log(restaurant.reserve?.(0,1) ?? 'Method does not exist');
 
-// Arrays
-const users = [{
-  name: 'darshan', email: 'username@example.com'}
-];
-console.log(users[0]?.email);
-console.log(users[1]?.email ?? 'users[1] does not exist');
+// // Arrays
+// const users = [{
+//   name: 'darshan', email: 'username@example.com'}
+// ];
+// console.log(users[0]?.email); // undefined
+// console.log(users[1]?.email ?? 'users[1] does not exist'); // a handy message in log
+
+
+///// ::::: Object.keys(); also known as properties;
+
+const properties = Object.keys(restaurant.openingHours);
+
+let openStr =  `We are open on ${properties.length} days: `;
+for (const day of properties) 
+  openStr += day + ', ';
+
+console.log(openStr);
