@@ -360,6 +360,15 @@ const restaurant = {
 // console.log(openStr);
 
 
-///// ::::: Object.values();
-const values = Object.values(restaurant.openingHours);
-console.log(values);
+// ///// ::::: Object.values();
+// const values = Object.values(restaurant.openingHours);
+// console.log(values);
+
+
+///// ::::: Object.entries();
+const daysOpening = Object.entries(restaurant.openingHours);
+console.log(daysOpening);
+
+// ex of Object.entries() Including array, object destructuring;
+for (const [day, {open, close}] of daysOpening)
+  console.log( `On ${day}, we open at ${open}, close at ${close}`);
