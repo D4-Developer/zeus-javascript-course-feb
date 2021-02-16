@@ -293,19 +293,46 @@ const restaurant = {
 // guests1 = restaurant.numGuest ?? 10;
 // console.log(guests1);
 
-const Menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// const Menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-for (const item of Menu) console.log(item);
+// for (const item of Menu) console.log(item);
 
-console.log(Menu.entries());
-console.log([...Menu.entries()]); // returns separate array for all entries
+// console.log(Menu.entries());
+// console.log([...Menu.entries()]); // returns separate array for all entries
 
-// too confusing for loop
-for (const item of Menu.entries()) 
-  console.log(`${item[0] + 1}: ${item[1]}`);
+// // too confusing for loop
+// for (const item of Menu.entries())
+//   console.log(`${item[0] + 1}: ${item[1]}`);
 
-console.log();
+// console.log();
 
-// Destructuring of entries elements one by one
-for (const [i, el] of Menu.entries())
-  console.log(`${i + 1}: ${el}`);
+// // Destructuring of entries elements one by one
+// for (const [i, el] of Menu.entries())
+//   console.log(`${i + 1}: ${el}`);
+
+
+
+////// :::::::::::
+// // Optional chaining.... ?.
+
+// hence mon is undefinded, so error:) 
+// console.log(restaurant.openingHours.mon.open); // -- error -- 
+if (restaurant.openingHours.mon) // openingHours or open may also be undefined....
+  console.log(restaurant.openingHours.mon.open);
+else
+  console.log('openingHours.mon is undefined');
+
+// same as above with optional chaining
+// .open will be only accessed if all left hand side propertied exists 
+console.log(restaurant.openingHours.mon?.open);
+// restuarant.openingHours.mon must be not undefined, null to be accessed open;
+console.log(restaurant.openingHours?.mon?.open);
+
+// very good ex of Nullish & Opetional Chaining operator ?? && ?.
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  // console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`On, ${day}, we open at ${open}`);
+}
