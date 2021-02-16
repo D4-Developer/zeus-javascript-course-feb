@@ -376,44 +376,91 @@ const restaurant = {
 
 // ///// :::: Sets
 
-console.log(new Set('Darshan'));
+// console.log(new Set('Darshan'));
 
-const ordersSet = new Set([
-  'pasta',
-  'pizza',
-  'pasta',
-  'abc',
-  'pizza'
-]);
-console.log(ordersSet);
+// const ordersSet = new Set([
+//   'pasta',
+//   'pizza',
+//   'pasta',
+//   'abc',
+//   'pizza'
+// ]);
+// console.log(ordersSet);
 
-console.log(ordersSet.size); // element count
+// console.log(ordersSet.size); // element count
 
-console.log(ordersSet.has('pizza')); // true
-console.log(ordersSet.has('bread')); // false
+// console.log(ordersSet.has('pizza')); // true
+// console.log(ordersSet.has('bread')); // false
 
-ordersSet.add('bread');
-console.log(ordersSet);
+// ordersSet.add('bread');
+// console.log(ordersSet);
 
-ordersSet.delete('abc');
-console.log(ordersSet);
+// ordersSet.delete('abc');
+// console.log(ordersSet);
 
-for (const order of ordersSet) console.log(order);
+// for (const order of ordersSet) console.log(order);
 
-ordersSet.clear();
-console.log(ordersSet);
+// ordersSet.clear();
+// console.log(ordersSet);
 
-// example
-const staffArr = ['waiter', 'chef', 'waiter', 'manager'];
+// // example
+// const staffArr = ['waiter', 'chef', 'waiter', 'manager'];
 
-// Array to Set
-const staffSet = new Set(staffArr);
-console.log(staffSet);
+// // Array to Set
+// const staffSet = new Set(staffArr);
+// console.log(staffSet);
 
-// Set to Array if we need index operator for accessing
-const staffUniqe = [...staffSet];
-console.log(staffUniqe);
+// // Set to Array if we need index operator for accessing
+// const staffUniqe = [...staffSet];
+// console.log(staffUniqe);
 
-// string char count with help of Set
+// // string char count with help of Set
 
-console.log(new Set('darshan').size); // 7 chars in 'darshan'
+// console.log(new Set('darshan').size); // 7 chars in 'darshan'
+
+
+// //////// ::::::::::::: Map
+// onject must have string as keys, while Map can have any type as key
+
+const map = new Map();
+map.set('name', 'Darshan'); // set() returns the updated map
+map.set(1, 'Rajkot').set(2, 'Gandhinagar'); // can directly use the returned one....
+
+map.set('open', 11);
+map.set('close', 23);
+
+map.set(false, 'We are close :(');
+map.set(true, 'We are open :D');
+
+console.log(map.get('name')); // pass the key to get corresponding value
+console.log(map.get(false));
+console.log(map.get('1')); // undefined
+
+const time = 21;
+console.log(map.get(time > map.get('open') && time < map.get('close')));
+
+console.log(map.has(1)); // return true | false 
+
+map.delete(2); // to delete key-value pair
+
+console.log(map);
+console.log(map.size); // return the no. of kay-value pairs
+
+map.clear();
+console.log(map);
+console.log('MAP CLEARED');
+
+const ar = [1,2];
+map.set(ar, 'test');
+console.log(map);
+
+// undefined.... because [1,2] && arr having same value not the reference
+console.log(map.get([1,2])); 
+console.log(map.get(ar));
+
+map.set(document.querySelector('h1'), 'heading');
+console.log(map);
+
+// map.set('heading', document.querySelector('h1'));
+// map.get('heading').textContent = 'Woahhhh'; // this'll change the text content of <h1>
+
