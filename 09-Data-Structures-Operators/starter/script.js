@@ -340,3 +340,10 @@ for (const day of days) {
 // Methods
 console.log(restaurant.order?.(0,1) ?? 'Method does not exist');
 console.log(restaurant.reserve?.(0,1) ?? 'Method does not exist');
+
+// Arrays
+const users = [{
+  name: 'darshan', email: 'username@example.com'}
+];
+console.log(users[0]?.email);
+console.log(users[1]?.email ?? 'users[1] does not exist');
