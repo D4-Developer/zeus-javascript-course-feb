@@ -366,9 +366,54 @@ const restaurant = {
 
 
 ///// ::::: Object.entries();
-const daysOpening = Object.entries(restaurant.openingHours);
-console.log(daysOpening);
+// const daysOpening = Object.entries(restaurant.openingHours);
+// console.log(daysOpening);
 
-// ex of Object.entries() Including array, object destructuring;
-for (const [day, {open, close}] of daysOpening)
-  console.log( `On ${day}, we open at ${open}, close at ${close}`);
+// // ex of Object.entries() Including array, object destructuring;
+// for (const [day, {open, close}] of daysOpening)
+//   console.log( `On ${day}, we open at ${open}, close at ${close}`);
+
+
+// ///// :::: Sets
+
+console.log(new Set('Darshan'));
+
+const ordersSet = new Set([
+  'pasta',
+  'pizza',
+  'pasta',
+  'abc',
+  'pizza'
+]);
+console.log(ordersSet);
+
+console.log(ordersSet.size); // element count
+
+console.log(ordersSet.has('pizza')); // true
+console.log(ordersSet.has('bread')); // false
+
+ordersSet.add('bread');
+console.log(ordersSet);
+
+ordersSet.delete('abc');
+console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+
+ordersSet.clear();
+console.log(ordersSet);
+
+// example
+const staffArr = ['waiter', 'chef', 'waiter', 'manager'];
+
+// Array to Set
+const staffSet = new Set(staffArr);
+console.log(staffSet);
+
+// Set to Array if we need index operator for accessing
+const staffUniqe = [...staffSet];
+console.log(staffUniqe);
+
+// string char count with help of Set
+
+console.log(new Set('darshan').size); // 7 chars in 'darshan'
