@@ -420,87 +420,139 @@ const restaurant = {
 
 
 // //////// ::::::::::::: Map
-// onject must have string as keys, while Map can have any type as key
+// // onject must have string as keys, while Map can have any type as key
 
-const map = new Map();
-map.set('name', 'Darshan'); // set() returns the updated map
-map.set(1, 'Rajkot').set(2, 'Gandhinagar'); // can directly use the returned one....
+// const map = new Map();
+// map.set('name', 'Darshan'); // set() returns the updated map
+// map.set(1, 'Rajkot').set(2, 'Gandhinagar'); // can directly use the returned one....
 
-map.set('open', 11);
-map.set('close', 23);
+// map.set('open', 11);
+// map.set('close', 23);
 
-map.set(false, 'We are close :(');
-map.set(true, 'We are open :D');
+// map.set(false, 'We are close :(');
+// map.set(true, 'We are open :D');
 
-console.log(map.get('name')); // pass the key to get corresponding value
-console.log(map.get(false));
-console.log(map.get('1')); // undefined
+// console.log(map.get('name')); // pass the key to get corresponding value
+// console.log(map.get(false));
+// console.log(map.get('1')); // undefined
 
-const time = 21;
-console.log(map.get(time > map.get('open') && time < map.get('close')));
+// const time = 21;
+// console.log(map.get(time > map.get('open') && time < map.get('close')));
 
-console.log(map.has(1)); // return true | false 
+// console.log(map.has(1)); // return true | false 
 
-map.delete(2); // to delete key-value pair
+// map.delete(2); // to delete key-value pair
 
-console.log(map);
-console.log(map.size); // return the no. of kay-value pairs
+// console.log(map);
+// console.log(map.size); // return the no. of kay-value pairs
 
-map.clear();
-console.log(map);
-console.log('MAP CLEARED');
+// map.clear();
+// console.log(map);
+// console.log('MAP CLEARED');
 
-const ar = [1,2];
-map.set(ar, 'test');
-console.log(map);
+// const ar = [1,2];
+// map.set(ar, 'test');
+// console.log(map);
 
-// undefined.... because [1,2] && arr having same value not the reference
-console.log(map.get([1,2])); 
-console.log(map.get(ar));
+// // undefined.... because [1,2] && arr having same value not the reference
+// console.log(map.get([1,2])); 
+// console.log(map.get(ar));
 
-map.set(document.querySelector('h1'), 'heading');
-console.log(map);
+// map.set(document.querySelector('h1'), 'heading');
+// console.log(map);
 
-// map.set('heading', document.querySelector('h1'));
-// map.get('heading').textContent = 'Woahhhh'; // this'll change the text content of <h1>
+// // map.set('heading', document.querySelector('h1'));
+// // map.get('heading').textContent = 'Woahhhh'; // this'll change the text content of <h1>
 
-// // initializing Map key-value without set();
+// // // initializing Map key-value without set();
 
-const question = new Map(
-  [
-    ['question', 'what is best programming languauge?'],
-    [1, 'C++'],
-    [2, 'Dart'],
-    [3, 'python'],
-    [4, 'java'],
-    [true, 'Correct!!!!'],
-    [false, 'Try again'],
-    ['ans', 1]
-  ]
-);
-console.log(question);
-console.log(question[2]); // undefined
+// const question = new Map(
+//   [
+//     ['question', 'what is best programming languauge?'],
+//     [1, 'C++'],
+//     [2, 'Dart'],
+//     [3, 'python'],
+//     [4, 'java'],
+//     [true, 'Correct!!!!'],
+//     [false, 'Try again'],
+//     ['ans', 1]
+//   ]
+// );
+// console.log(question);
+// console.log(question[2]); // undefined
 
-// Map is a typeof Iterator
-for (const [key, value] of question)
-  if (typeof key == 'number')
-    console.log(`Option ${key}: ${value}`);
-
-
-// convert Object to Map
-const hoursMap = new Map(Object.entries(restaurant.openingHours));
-console.log(hoursMap);
+// // Map is a typeof Iterator
+// for (const [key, value] of question)
+//   if (typeof key == 'number')
+//     console.log(`Option ${key}: ${value}`);
 
 
-// const selected = Number(prompt('enter your choise '));
-const selected = 1;
-console.log(question.get(question.get('ans') == selected));
+// // convert Object to Map
+// const hoursMap = new Map(Object.entries(restaurant.openingHours));
+// console.log(hoursMap);
 
 
-// convert map to array 
-const mapToArray = [...question]; // ... spread (unpacking) operator;
-// console.log(mapToArray);
+// // const selected = Number(prompt('enter your choise '));
+// const selected = 1;
+// console.log(question.get(question.get('ans') == selected));
 
-console.log(question.entries());
-console.log([...question.keys()]); // handy approach to use in future as array
-console.log(question.values());
+
+// // convert map to array 
+// const mapToArray = [...question]; // ... spread (unpacking) operator;
+// // console.log(mapToArray);
+
+// console.log(question.entries());
+// console.log([...question.keys()]); // handy approach to use in future as array
+// console.log(question.values());
+
+
+
+
+///////////////////////////////////////////////
+////// ::::: ///// ::::: Strings ::::: ///// ::::: ///// ::::: 
+
+const airline = 'Air India Airline';
+const plane = 'A350';
+
+console.log(plane[3]);
+console.log('A123'[0]); /// 
+
+console.log(airline.length);
+console.log('A123'.length);
+
+//// :: //indexOf, lastIndexOf
+console.log();
+console.log(airline.indexOf('I'));
+console.log(airline.indexOf('i', 10)); // start searching from 10
+console.log(airline.lastIndexOf('i'));
+console.log(airline.indexOf('India'));
+console.log(airline.indexOf('india')); // -1 means not found
+console.log();
+
+//// :: //slice 
+console.log(airline.slice(4)); // return the substring
+console.log(airline.slice(4,9)); // substr length = end-start
+
+console.log(airline.slice(-7)); // start slice from the end if -ve parameter
+console.log(airline.slice(-13, -8)); // India
+console.log(airline.slice(4, -8)); // India
+console.log();
+
+console.log(airline.slice(4, airline.indexOf(' ',4)));
+console.log();
+
+
+function checkMiddleSeat(seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  console.log(s, s=='E' || s=='B');
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('darshan'));
+console.log(typeof new String('darshan'));
+console.log(typeof new String('darshan').slice(-1));
+
