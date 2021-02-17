@@ -514,45 +514,86 @@ const restaurant = {
 const airline = 'Air India Airline';
 const plane = 'A350';
 
-console.log(plane[3]);
-console.log('A123'[0]); /// 
+// console.log(plane[3]);
+// console.log('A123'[0]); /// 
 
-console.log(airline.length);
-console.log('A123'.length);
+// console.log(airline.length);
+// console.log('A123'.length);
 
-//// :: //indexOf, lastIndexOf
-console.log();
-console.log(airline.indexOf('I'));
-console.log(airline.indexOf('i', 10)); // start searching from 10
-console.log(airline.lastIndexOf('i'));
-console.log(airline.indexOf('India'));
-console.log(airline.indexOf('india')); // -1 means not found
-console.log();
+// //// :: //indexOf, lastIndexOf
+// console.log();
+// console.log(airline.indexOf('I'));
+// console.log(airline.indexOf('i', 10)); // start searching from 10
+// console.log(airline.lastIndexOf('i'));
+// console.log(airline.indexOf('India'));
+// console.log(airline.indexOf('india')); // -1 means not found
+// console.log();
 
-//// :: //slice 
-console.log(airline.slice(4)); // return the substring
-console.log(airline.slice(4,9)); // substr length = end-start
+// //// :: //slice 
+// console.log(airline.slice(4)); // return the substring
+// console.log(airline.slice(4,9)); // substr length = end-start
 
-console.log(airline.slice(-7)); // start slice from the end if -ve parameter
-console.log(airline.slice(-13, -8)); // India
-console.log(airline.slice(4, -8)); // India
-console.log();
+// console.log(airline.slice(-7)); // start slice from the end if -ve parameter
+// console.log(airline.slice(-13, -8)); // India
+// console.log(airline.slice(4, -8)); // India
+// console.log();
 
-console.log(airline.slice(4, airline.indexOf(' ',4)));
-console.log();
+// console.log(airline.slice(4, airline.indexOf(' ',4)));
+// console.log();
 
 
-function checkMiddleSeat(seat) {
-  // B and E are middle seats
-  const s = seat.slice(-1);
-  console.log(s, s=='E' || s=='B');
-};
+// function checkMiddleSeat(seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1);
+//   console.log(s, s=='E' || s=='B');
+// };
 
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('3E');
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
 
-console.log(new String('darshan'));
-console.log(typeof new String('darshan'));
-console.log(typeof new String('darshan').slice(-1));
+// console.log(new String('darshan'));
+// console.log(typeof new String('darshan'));
+// console.log(typeof new String('darshan').slice(-1));
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+//:://Fix capitalization in name
+const passenger = 'jOnAS';
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// comparig emails
+const email = 'hello@jonas.io';
+const loginEmail = ' Hello@Jonas.Io \n';
+
+const normalEmail = loginEmail.toLowerCase().trim();
+console.log(normalEmail);
+console.log(email === normalEmail);
+
+// replacing only replace the first matched one....
+// it is case sensitive
+const priceDL = '288.97$'
+const priceInr = priceDL.replace('$', 'INR');
+console.log(priceInr);
+
+const announcement = 'All passangers come to bording door 23, Boarding door 23';
+console.log(announcement.replace('door', 'gate')); // 1 door will be replaced
+
+// RegExp
+console.log(announcement.replace(/door/g, 'gate')); // all door will be replaced
+// g stands for global
+
+// Booleans return type methods
+// inlcudes(); // case-sensitive
+const pl = 'Airbus A320plus';
+console.log(pl.includes('A320')); // true
+console.log(pl.includes('air')); // false
+
+//startsWith(); // case-sensitive
+console.log(pl.startsWith('Airbus')); // true
+//endsWith() // case-sensitive
+console.log(pl.endsWith('Plus')); // false
 
