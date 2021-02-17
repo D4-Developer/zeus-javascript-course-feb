@@ -556,44 +556,99 @@ const plane = 'A350';
 // console.log(typeof new String('darshan'));
 // console.log(typeof new String('darshan').slice(-1));
 
-console.log(airline.toLowerCase());
-console.log(airline.toUpperCase());
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
 
-//:://Fix capitalization in name
-const passenger = 'jOnAS';
-const passengerLower = passenger.toLowerCase();
-const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
-console.log(passengerCorrect);
+// //:://Fix capitalization in name
+// const passenger = 'jOnAS';
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
 
-// comparig emails
-const email = 'hello@jonas.io';
-const loginEmail = ' Hello@Jonas.Io \n';
+// // comparig emails
+// const email = 'hello@jonas.io';
+// const loginEmail = ' Hello@Jonas.Io \n';
 
-const normalEmail = loginEmail.toLowerCase().trim();
-console.log(normalEmail);
-console.log(email === normalEmail);
+// const normalEmail = loginEmail.toLowerCase().trim();
+// console.log(normalEmail);
+// console.log(email === normalEmail);
 
-// replacing only replace the first matched one....
-// it is case sensitive
-const priceDL = '288.97$'
-const priceInr = priceDL.replace('$', 'INR');
-console.log(priceInr);
+// // replacing only replace the first matched one....
+// // it is case sensitive
+// const priceDL = '288.97$'
+// const priceInr = priceDL.replace('$', 'INR');
+// console.log(priceInr);
 
-const announcement = 'All passangers come to bording door 23, Boarding door 23';
-console.log(announcement.replace('door', 'gate')); // 1 door will be replaced
+// const announcement = 'All passangers come to bording door 23, Boarding door 23';
+// console.log(announcement.replace('door', 'gate')); // 1 door will be replaced
 
-// RegExp
-console.log(announcement.replace(/door/g, 'gate')); // all door will be replaced
-// g stands for global
+// // RegExp
+// console.log(announcement.replace(/door/g, 'gate')); // all door will be replaced
+// // g stands for global
 
-// Booleans return type methods
-// inlcudes(); // case-sensitive
-const pl = 'Airbus A320plus';
-console.log(pl.includes('A320')); // true
-console.log(pl.includes('air')); // false
+// // Booleans return type methods
+// // inlcudes(); // case-sensitive
+// const pl = 'Airbus A320plus';
+// console.log(pl.includes('A320')); // true
+// console.log(pl.includes('air')); // false
 
-//startsWith(); // case-sensitive
-console.log(pl.startsWith('Airbus')); // true
-//endsWith() // case-sensitive
-console.log(pl.endsWith('Plus')); // false
+// //startsWith(); // case-sensitive
+// console.log(pl.startsWith('Airbus')); // true
+// //endsWith() // case-sensitive
+// console.log(pl.endsWith('Plus')); // false
 
+
+
+// split(); return the array
+// split('') will return all characters in single array
+console.log('a+very+good+nature'.split('+'));
+console.log('darshan rathod'.split(' ')); // .length = 2
+// console.log('darshan rathod'.split('').length); // 14
+
+const [fname,lname] = 'darshan rathod'.split(' ');
+console.log(fname, lname);
+
+console.log(['Mr.', fname, lname.toUpperCase()].join('-'));; // join all elements by given char sequence
+
+
+function capitalizeALL(name) {
+  const names = name.split(' ');
+  const n = [];
+
+  for (const word of names) {
+    // n.push(word[0].toUpperCase() + word.slice(1));
+    n.push(word.replace(word[0], word[0].toUpperCase()));
+  }
+  console.log(n.join(' '));
+}
+
+const nname = 'My name is darshan rathod';
+capitalizeALL(nname);
+
+
+// Padding
+const msgg = 'Go to gate 23!'
+console.log(msgg.padStart(25, '+'));
+console.log(msgg.length) //; not 25....
+console.log('darshan'.padStart(24,'+').padEnd(34,'-'));
+
+function maskCreditcard(num) {
+  const str = num + '';
+  const last4 = str.slice(-4);
+  return last4.padStart(str.length, '*');
+}
+
+console.log(maskCreditcard(654687534345345)); // must care abount to store in Int limits
+console.log(maskCreditcard('4218753135470045464847'));
+
+
+// Repeat
+const msg1 = 'Bad weather.... All Departures Delayed. ';
+console.log(msg1.repeat(5));
+
+function plansInLine(n) {
+  console.log(`there are ${n} planes in line ${'🛫'.repeat(n)}`);
+}
+
+plansInLine(5);
+plansInLine(3);
