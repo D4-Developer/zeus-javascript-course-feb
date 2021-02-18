@@ -134,7 +134,7 @@ ll.book(241, 'Tirthraj Zala');
 
 
 const eurowings = {
-    name: 'Eurowings',
+    airline: 'Eurowings',
     iataCode: 'EW',
     bookings: [],   
 }
@@ -144,7 +144,7 @@ const book = ll.book;
 // Does not work
 // book(123, 'darshan')// --error--
 
-
+/*
 // call method (all required function parameters separated by comma, )
 // call method to explicitly tell value of this keyword
 // call(objectThatWillPointTothis, parameter1, ...);
@@ -163,3 +163,62 @@ console.log(eurowings);
 
 book.call(eurowings, ...flightData); // (euroWings, 154, 'mayur')
 
+*/
+
+const swiss = {
+    name: 'swiss',
+    iataCode: 'EW',
+    bookings: [],
+}
+
+// Bind method
+
+const bookEw = book.bind(eurowings); // book method's this is bind to euroWings object
+bookEw(23, 'new passanger'); 
+// so when we call bookEw() it will refere this to euroWings everytime
+
+
+const bookLH = book.bind(ll);
+const bookSs = book.bind(swiss);
+
+// define bind on object as well specific arguments already
+const bookEw23 = book.bind(eurowings, 23);
+bookEw23('name1 with 23');// seat alredy set as 23
+bookEw23('name2 with 23');// so we need to only specify remaining args
+bookEw23('name3 with 23');
+// so bind syntax : bind(thisObject, param1, param2,..);
+
+// with eventListenners
+ll.planes = 300;
+ll.buyPlane = function() {
+    console.log(this); // will refere to button class .btn tag
+
+    this.planes++;
+    console.log(this.planes);
+}
+
+ll.buyPlane(); // okay
+// document.querySelector('.buy')
+    // .addEventListener('click', ll.buyPlane); //failed
+
+document.querySelector('.buy')
+    .addEventListener('click', ll.buyPlane.bind(ll)); // success
+
+
+// partial application
+// 1)
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(10, 100));
+
+const addTaxIndia = addTax.bind(null ,5); // rate = 5 fix 
+console.log(addTaxIndia(100)); // so we will only pass value argument
+
+// 2) same as above functionality but a different without bind
+const addT = function(rate) {
+    return function(val) {
+        return val + val * rate;
+    }
+}
+
+const addTIndia = addT(.5);
+console.log(addTIndia(100));
