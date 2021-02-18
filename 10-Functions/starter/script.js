@@ -117,6 +117,7 @@ greet('hello')('mayur'); /// imp
 greetArr('hey')('mayur');
 */
 
+ /*
 
 const ll = {
     airline: 'Lufthansa',
@@ -144,6 +145,8 @@ const book = ll.book;
 // Does not work
 // book(123, 'darshan')// --error--
 
+*/
+
 /*
 // call method (all required function parameters separated by comma, )
 // call method to explicitly tell value of this keyword
@@ -165,6 +168,7 @@ book.call(eurowings, ...flightData); // (euroWings, 154, 'mayur')
 
 */
 
+/*
 const swiss = {
     name: 'swiss',
     iataCode: 'EW',
@@ -222,3 +226,26 @@ const addT = function(rate) {
 
 const addTIndia = addT(.5);
 console.log(addTIndia(100));
+
+*/
+
+
+/// functions that will run once 
+/// IIFE 
+// #1)
+const runOnce = function () {
+    console.log('only one time run #1');
+}
+
+runOnce();
+
+// #2) ( function () {} ) ();
+(
+    function () {
+        console.log('only one time run #2');
+    }
+)();
+
+// #3)
+( () => console.log('only one time run #3') )();
+
