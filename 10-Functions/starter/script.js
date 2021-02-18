@@ -97,16 +97,16 @@ document.body.addEventListener('click', high5);
 */
 
 
+/*
 // 
-
-// function greet(greeting) {
-//     return function(name) {
-//         console.log(`${greeting} ${name}`);
-//     }
-// }
+function greet(greeting) {
+    return function(name) {
+        console.log(`${greeting} ${name}`);
+    }
+}
 
 // arrow implementation of above function declaration
-const greet = (greeting) => (name) => console.log(`${greeting} ${name}`); 
+const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`); 
 
 const greeterHey = greet('hey');
 
@@ -114,3 +114,52 @@ greeterHey('darshan');
 greeterHey('tirth');
 
 greet('hello')('mayur'); /// imp
+greetArr('hey')('mayur');
+*/
+
+
+const ll = {
+    airline: 'Lufthansa',
+    iataCode: 'LH',
+    bookings: [],
+    // book: function () {}
+    book(fNum, pName) {
+        console.log(`${pName} booked a seat on ${this.airline} flight ${this.iataCode}${fNum}`);
+        this.bookings.push({flight: `${this.iataCode}${fNum}`, pName});
+    }
+}
+
+ll.book(240, 'Darshan Rathod');
+ll.book(241, 'Tirthraj Zala');
+
+
+const eurowings = {
+    name: 'Eurowings',
+    iataCode: 'EW',
+    bookings: [],   
+}
+
+const book = ll.book;
+
+// Does not work
+// book(123, 'darshan')// --error--
+
+
+// call method (all required function parameters separated by comma, )
+// call method to explicitly tell value of this keyword
+// call(objectThatWillPointTothis, parameter1, ...);
+book.call(eurowings, 123, 'darshan');
+console.log(eurowings);
+
+book.call(ll, 144, 'Mayur');
+console.log(ll);
+
+
+// Apply method (all required function parameters in single array)
+// apply(objectThatWillPointTothis, [parameter1, parameter2, ...]); 
+const flightData = [154, 'mayur'];
+book.apply(eurowings, [154, 'mayur']); // (euroWings, flightData);
+console.log(eurowings);
+
+book.call(eurowings, ...flightData); // (euroWings, 154, 'mayur')
+
