@@ -62,6 +62,7 @@ checkIn(flight, darshan); // wrong passport as
 
 */
 
+/*
 // first-class functions
 function oneWord(str) {
     // return the string without any spaces
@@ -93,3 +94,23 @@ function high5() {
 
 document.body.addEventListener('click', high5);
 
+*/
+
+
+// 
+
+// function greet(greeting) {
+//     return function(name) {
+//         console.log(`${greeting} ${name}`);
+//     }
+// }
+
+// arrow implementation of above function declaration
+const greet = (greeting) => (name) => console.log(`${greeting} ${name}`); 
+
+const greeterHey = greet('hey');
+
+greeterHey('darshan');
+greeterHey('tirth');
+
+greet('hello')('mayur'); /// imp
