@@ -275,3 +275,64 @@ booker(); // 2
 booker(); // 3
 
 console.dir(booker);
+
+// 2.1)
+
+// let f;
+// const g = function() {
+//     const a = 23;
+//     f = function() {
+//         console.log(a*2);
+//     }
+// }
+
+// g();
+// f();
+
+//  2.2)
+
+let ff;
+const gg = function() {
+    const aa = 23;
+    ff = function() {
+        console.log(aa*2);
+    }
+}
+
+const h = function () {
+    const b = 7;
+    ff = function () {
+        console.log(b*2);
+    }
+}
+
+
+gg();
+ff(); // 46; (a*2)
+
+// re-assignment ff function
+h();
+ff(); // 14; (b*2)
+console.dir(ff);
+
+
+// 2.3
+const boardPassangers = function(n, wait) {
+    const perGroup = n/3;
+
+    setTimeout(function() {
+        console.log(`We are now bording all ${n} passengers`);
+        console.log(`There are 3 groups, each with ${perGroup} passengers`);
+    }, 1000 * wait);
+
+    console.log(`Will start boarding in ${wait} seconds`);
+}
+
+// console.log(boardPassangers(180, 3));
+// setTimeOut() will completely independently, but still it has access to all variable,
+//  where setTimeout was boarn
+
+
+// 2.4 closure has higher priority over scope-chain 
+const perGroup = 1000;
+console.log(boardPassangers(180, 3));
