@@ -1,5 +1,7 @@
-'use strict'
+// 'use strict'
 
+/*
+//  #1)
 const poll = {
     '0': 'Dart',
     '1': 'C++',
@@ -51,3 +53,17 @@ const otherObjectAnsArr = [8,4,0,0];
 poll.displayResults.call({
     ans: otherObjectAnsArr
 }, 'string');
+
+*/
+
+// #2)
+
+( function () {
+    const header = document.querySelector('h1');
+    header.style.color = 'red';
+
+    document.querySelector('body').addEventListener('click',
+        function() {
+            header.style.color = 'blue';
+        });
+}) ();
