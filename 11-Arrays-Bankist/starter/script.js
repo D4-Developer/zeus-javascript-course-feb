@@ -88,6 +88,7 @@ function createUserNames () {
 }
 
 createUserNames();
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -174,3 +175,51 @@ currenciesUnique.forEach( function (val, key, map) {
   console.log(`${key}: ${val}`);
 });
 */
+
+
+// map : array
+// returns the new array of all elements,
+// with performing specified action on each elemets....
+
+console.log('orginal:', account1.movements);
+function multiPyByN (n) {
+  return account1.movements.map( (e) => e * n);
+}
+
+const movements = multiPyByN(2);
+
+multiPyByN(2);
+console.log('Multiplied by 2:',movements);
+
+
+// filter : array
+function filterDeposits() {
+  return movements.filter( function (e) {
+    return e > 0;
+  });
+}
+
+const deposits = filterDeposits();
+console.log('deposits:', deposits);
+
+function filterWithdrawals () {
+  return movements.filter( function (e) {
+    return e < 0;
+  });
+}
+
+const withdrawals = filterWithdrawals();
+console.log('withdrawals:', withdrawals);
+
+
+// reduce : array
+// syntax: reduce ( fn(pre, curr, i, arr) {  }, initializedPreVal);
+
+function calcBalance() {
+  return movements.reduce( function (pre, current){
+    return pre + current;
+  },  0);
+}
+
+const accBalance = calcBalance();
+console.log('accBalance: ', accBalance);
