@@ -71,10 +71,9 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-
+/*
 let arr = ['a', 'b', 'c', 'd', 'e'];
 
 // SLICE
@@ -115,3 +114,18 @@ console.log([...arr, ...arr2]); // same as above
 // JOIN
 // return the string
 console.log(letters.join('-'));
+*/
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+//  forEach( function (element, index, array) {} );
+// can't use break/continue with forEach();
+
+movements.forEach(function (e) {
+  e > 0 ? console.log('credit') : console.log('debit')
+});
+
+movements.forEach(function (e, index) {
+  e > 0 ? console.log(`transaction ${index+1}: credit`) 
+  : console.log(`transaction ${index}: debit`)
+});
