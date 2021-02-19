@@ -230,6 +230,8 @@ console.log(addTIndia(100));
 */
 
 
+
+/*
 /// functions that will run once 
 /// IIFE 
 // #1)
@@ -249,3 +251,27 @@ runOnce();
 // #3)
 ( () => console.log('only one time run #3') )();
 
+
+
+
+*/
+/// clousers
+/// A function has access to the variable environment(VE) of 
+/// the execution context in which it was created
+
+//  1)
+const secureBooking = function() {
+    let passangerCount = 0;
+    
+    return function () {
+        ++passangerCount;
+        console.log(`passangerCount: ${passangerCount}`);
+    }
+}
+
+const booker = secureBooking();
+booker(); // 1
+booker(); // 2
+booker(); // 3
+
+console.dir(booker);
