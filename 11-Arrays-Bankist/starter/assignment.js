@@ -22,6 +22,7 @@ printFn(kateData);
 */
 
 
+/*
 // #2
 const dog20 = [5,2,4,1,15,8,3];
 const dog21 = [16,6,10,5,6,1,4];
@@ -52,6 +53,24 @@ function calcAverageHumanAge(dogs) {
     console.log(averageAges2);
 
 }
-
 calcAverageHumanAge(dog20);
-calcAverageHumanAge(dog21)
+calcAverageHumanAge(dog21);
+*/
+
+
+// #3
+function calcAverageHumanAge_chaining(dogs) {
+    const average = dogs.map( (age) => {
+            if (age <= 2)
+                return 2 * age;
+            else
+                return 16 + age * 4;
+    })
+    .filter ( (age) => age >= 18)
+    .reduce ( (acc, age, i, arr) => acc + age /arr.length , 0);
+
+    return average;
+}
+
+console.log(calcAverageHumanAge_chaining(dog20));
+console.log(calcAverageHumanAge_chaining(dog21));
