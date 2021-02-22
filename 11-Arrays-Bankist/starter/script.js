@@ -73,7 +73,7 @@ function displayTransaction (acc) {
     const transTag = `<div class="movements__row">
       <div class="movements__type movements__type--${transType}">${i + 1} ${transType}</div>
       <div class="movements__date">X days ago</div>
-      <div class="movements__value">${trans}</div>
+      <div class="movements__value">${trans}€</div>
     </div>`;
 
     containerMovements.insertAdjacentHTML('afterbegin', transTag);
@@ -104,6 +104,31 @@ calcBalances();
 
 console.log(account1);
 console.log(account2);
+
+function calcDisplaySummary(movements) {
+  const incomes = movements
+    .filter( (mov) => mov > 0)
+    .reduce( ((acc, mov) => acc + mov) ,0);
+
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter( (mov) => mov < 0)
+    .reduce( (acc, mov) => acc + mov ,0);
+  
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter( (mov) => mov > 0)
+    .map ( (deposit) => (deposit * 1.2) / 100 )
+    .filter ( (int, arr) => int > 1) // less than 1 interest will be discarded
+    .reduce ( (acc, interest) => acc + interest , 0);
+  labelSumInterest.textContent = `${interest}€`
+}
+
+calcDisplaySummary(account1.movements);
+
+
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -194,7 +219,7 @@ currenciesUnique.forEach( function (val, key, map) {
 
 
 
-
+/*
 // map : array
 // returns the new array of all elements,
 // with performing specified action on each elemets....
@@ -250,3 +275,18 @@ function maxUsingReduce() {
 };
 
 console.log('max:', maxUsingReduce());
+*/
+
+
+
+/// Pipeline ( chainig of array-methods )
+const euroToUsd = 1.1;
+// console.log(account1.movements);
+
+// ex of pipeline 
+const totalDepositsUSD = account1.movements
+  .filter(mov => mov > 0)
+  .map((mov,i,arr) => mov * euroToUsd)
+  .reduce( (pre, curr) => pre + curr, 0);
+
+console.log(totalDepositsUSD);
