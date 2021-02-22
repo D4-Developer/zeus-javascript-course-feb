@@ -102,8 +102,8 @@ function calcBalances() {
 
 calcBalances();
 
-console.log(account1);
-console.log(account2);
+// console.log(account1);
+// console.log(account2);
 
 function calcDisplaySummary(movements) {
   const incomes = movements
@@ -278,7 +278,7 @@ console.log('max:', maxUsingReduce());
 */
 
 
-
+/*
 /// Pipeline ( chainig of array-methods )
 const euroToUsd = 1.1;
 // console.log(account1.movements);
@@ -290,3 +290,17 @@ const totalDepositsUSD = account1.movements
   .reduce( (pre, curr) => pre + curr, 0);
 
 console.log(totalDepositsUSD);
+*/
+
+
+// find () return the first element that satisfies given condition
+// only returns 1 element
+const firstWithDrawal = account1.movements.find(mov => mov < 0);
+console.log(firstWithDrawal);
+
+const str = ['d', 'a', 'r', 's', 'h', 'a', 'n'];
+console.log(str.find( (ele)=> ele == 'a')); // a
+console.log(str.find( (ele)=> ele == 'b')); // undefined
+
+const account = accounts.find( (acc) => acc.owner == 'Jessica Davis');
+console.log(account); // object 
