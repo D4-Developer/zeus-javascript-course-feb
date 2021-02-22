@@ -61,6 +61,9 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+function login() {
+
+}
 
 function displayTransaction (acc) {
   
@@ -88,6 +91,19 @@ function createUserNames () {
 }
 
 createUserNames();
+
+function calcBalances() {
+  accounts.forEach( function (acc) {
+    acc.balance = acc.movements.reduce( function (pre, current){
+      return pre + current;
+    },  0);
+  });
+}
+
+calcBalances();
+
+console.log(account1);
+console.log(account2);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -177,6 +193,8 @@ currenciesUnique.forEach( function (val, key, map) {
 */
 
 
+
+
 // map : array
 // returns the new array of all elements,
 // with performing specified action on each elemets....
@@ -223,3 +241,12 @@ function calcBalance() {
 
 const accBalance = calcBalance();
 console.log('accBalance: ', accBalance);
+
+function maxUsingReduce() {
+  return movements.reduce(function(pre, current) {
+    if (pre > current) return pre;
+    else return current
+  }, movements[0]);
+};
+
+console.log('max:', maxUsingReduce());
