@@ -63,7 +63,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 let isLoggedIn = false;
 let currentUser;
-
+let needSort = false;
 function login(e) {
   // form element's default behaviour is to submit the page
   // Prevent form for submitting
@@ -98,6 +98,7 @@ function resetPage() {
   labelWelcome.textContent ='Login to get started';
   containerApp.style.opacity = 0;
   isLoggedIn = false;
+  needSort = false;
   containerMovements.innerHTML = '';
 }
 
@@ -106,14 +107,18 @@ function setupLoggedInPage() {
   labelWelcome.textContent = `Welcome back, ${currentUser.owner.split(' ')[0]}`;
   inputLoginUsername.value = '';
   inputLoginPin.value = '';
-  displayTransaction(currentUser.movements);
+  displayTransactions(currentUser.movements);
   calcDisplaySummary(currentUser.movements);
   calcBalances();
 }
 
-function displayTransaction (acc) {
+function displayTransactions (acc) {
+  // 
+  containerMovements.innerHTML = '';
+
+  const movs = needSort ? acc.slice().sort( (a,b) => a - b) : acc; 
   
-  acc.forEach( function (trans, i) {
+  movs.forEach( function (trans, i) {
     const transType = trans > 0 ? 'deposit' : 'withdrawal';
     
     const transTag = `<div class="movements__row">
@@ -242,7 +247,7 @@ btnTransfer.addEventListener('click', transferMoney);
 function loanRequest (e) {
   e.preventDefault();
   const loanAmount = Number(inputLoanAmount.value);
-  if (loanAmount < 0) return;
+  if (loanAmount <= 0) return;
   const require = 10;
 
   const isEligible = currentUser.movements.some( (mov) => {
@@ -261,6 +266,7 @@ function loanRequest (e) {
   }
   else console.log('You are not eligible for this loan amount');
 
+  inputLoanAmount.value = '';
 
 }
 
@@ -298,6 +304,11 @@ function clearCloseFormFields () {
 
 btnClose.addEventListener('click', deleteAccount);
 
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  needSort = !needSort;
+  displayTransactions(currentUser.movements, 1);
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -508,6 +519,7 @@ console.log(account1.movements.map(depositCheck));
 */
 
 
+/*
 // flat()
 // returns the flattned array
 // only goes 1 leval deep (default)
@@ -544,3 +556,25 @@ const overallBalanceChain1 = accounts
   .reduce( (acc, mov) => acc + mov, 0);
 
 console.log(overallBalanceChain1); // 17840
+*/
+
+
+
+// ::::: sorting array;
+// mutates the array
+// converts everything in string & then sorts the strings
+
+// strings
+const owners = ['jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort()); // returns the sorted array
+console.log(owners);
+
+// numbers
+const movs = account1.movements;
+// console.log(movs.sort());
+
+// callback-function in sort()
+movs.sort( (a,b) => a > b); // ascending // (a,b) => a-b
+console.log(movs);
+movs.sort( (a,b) => a < b); // descending // (a-b) => b-a
+console.log(movs);
