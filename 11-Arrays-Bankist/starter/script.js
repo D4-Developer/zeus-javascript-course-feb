@@ -218,7 +218,7 @@ function withDrawalMoney (amount) {
 }
 
 function newTransaction (amount, isDebit) {
-  const transType = isDebit > 0 ? 'deposit' : 'withdrawal';
+  const transType = isDebit != 0 ? 'deposit' : 'withdrawal';
     
   const transTag = `<div class="movements__row">
     <div class="movements__type movements__type--${transType}">
@@ -239,6 +239,35 @@ function clearTransferFormFields () {
 btnTransfer.addEventListener('click', transferMoney);
 
 
+function loanRequest (e) {
+  e.preventDefault();
+  const loanAmount = Number(inputLoanAmount.value);
+  if (loanAmount < 0) return;
+  const require = 10;
+
+  const isEligible = currentUser.movements.some( (mov) => {
+    return mov >= (require * loanAmount)/100;
+  });
+
+  if (isEligible) {
+    depositeMoney(currentUser, loanAmount);
+     // add new transaction in history 
+     newTransaction(loanAmount, 1);
+     // re calculate summury ( in, out, interest )
+     calcDisplaySummary(currentUser.movements);
+     // re-calculate total balance
+     calcBalances();
+    console.log('loan approved');
+  }
+  else console.log('You are not eligible for this loan amount');
+
+
+}
+
+btnLoan.addEventListener('click', loanRequest);
+
+
+// ::::::::::::::::::: Delete Account :::::::::::::::::::::::
 function deleteAccount (e) {
   e.preventDefault();
   if (inputClosePin.value && inputCloseUsername.value) return;
@@ -446,3 +475,17 @@ console.log(str.find( (ele)=> ele == 'b')); // undefined
 const account = accounts.find( (acc) => acc.owner == 'Jessica Davis');
 console.log(account); // object 
 */
+
+
+
+// some(): returns true/false
+console.log(account1.movements);
+
+// pure euality
+console.log(account1.movements.includes(-130)); // true
+
+// Condition
+console.log(account1.movements.some( (mov) => mov === -130)); // true
+
+const anyBigDeposits = account1.movements.some( (mov) => mov > 1500); // true
+console.log(anyBigDeposits);
