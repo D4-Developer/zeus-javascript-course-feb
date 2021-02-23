@@ -61,8 +61,54 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-function login() {
+let isLoggedIn = false;
+let currentUser;
 
+function login(e) {
+  // form element's default behaviour is to submit the page
+  // Prevent form for submitting
+  e.preventDefault();
+  
+  const inputUserName = inputLoginUsername.value;
+  const requestedLogin = accounts.find ((acc) => acc.userName == inputUserName);
+  
+  if (requestedLogin == undefined) {
+    console.log('No user with given username');
+    /// reset the page to login page
+    currentUser = null;
+  }
+  else {
+    resetPage();
+    console.log('user found');
+    if (requestedLogin.pin == inputLoginPin.value) {
+      console.log('login success');
+      containerApp.style.opacity = 100;
+      currentUser = requestedLogin;
+      setupLoggedInPage();
+      isLoggedIn = true;
+    }
+    else {
+      console.log('but, wrong pin');
+      currentUser = null;
+    }
+  }
+}
+
+function resetPage() {
+  labelWelcome.textContent ='Login to get started';
+  containerApp.style.opacity = 0;
+  isLoggedIn = false;
+  containerMovements.innerHTML = '';
+}
+
+function setupLoggedInPage() {
+  if (isLoggedIn) return;
+  labelWelcome.textContent = `Welcome back, ${currentUser.owner.split(' ')[0]}`;
+  inputLoginUsername.value = '';
+  inputLoginPin.value = '';
+  displayTransaction(currentUser.movements);
+  calcDisplaySummary(currentUser.movements);
+  calcBalances();
 }
 
 function displayTransaction (acc) {
@@ -80,7 +126,7 @@ function displayTransaction (acc) {
   });
 }
 
-displayTransaction(account1.movements);
+// displayTransaction(account1.movements);
 
 function createUserNames () {
   accounts.forEach( function (acc) {
@@ -93,19 +139,19 @@ function createUserNames () {
 createUserNames();
 
 function calcBalances() {
-  accounts.forEach( function (acc) {
-    acc.balance = acc.movements.reduce( function (pre, current){
-      return pre + current;
-    },  0);
-  });
+  currentUser.balance = currentUser.movements
+    .reduce( (acc, mov) => acc + mov, 0);
+  
+  labelBalance.textContent = `${currentUser.balance}€`;
 }
 
-calcBalances();
+// calcBalances();
 
 // console.log(account1);
 // console.log(account2);
 
 function calcDisplaySummary(movements) {
+  const intRate = currentUser.interestRate;;
   const incomes = movements
     .filter( (mov) => mov > 0)
     .reduce( ((acc, mov) => acc + mov) ,0);
@@ -120,14 +166,77 @@ function calcDisplaySummary(movements) {
 
   const interest = movements
     .filter( (mov) => mov > 0)
-    .map ( (deposit) => (deposit * 1.2) / 100 )
+    .map ( (deposit) => (deposit * intRate) / 100 )
     .filter ( (int, arr) => int > 1) // less than 1 interest will be discarded
     .reduce ( (acc, interest) => acc + interest , 0);
   labelSumInterest.textContent = `${interest}€`
 }
 
-calcDisplaySummary(account1.movements);
+// calcDisplaySummary(account1.movements);
 
+
+btnLogin.addEventListener('click', login);
+
+/// ::::::::::::::::::::::: Transfer functionality ::::::::::::::::::::::::
+
+function transferMoney (e) {
+
+  e.preventDefault();
+
+  const recipientUserName = inputTransferTo.value;
+  const amount = Number(inputTransferAmount.value);
+
+  if (recipientUserName == currentUser.userName)
+    return;
+
+  const recipient = accounts.find( (acc) => acc.userName == recipientUserName );
+  if (recipient && amount > 0) { /// THIS CAN BE Refactored: update recent, instead calculate All from start
+    // deposit to recipient
+    depositeMoney(recipient, amount);
+    // withdrawal from currentUser
+    withDrawalMoney(amount);
+    // add new transaction in history 
+    newTransaction(amount, 0);
+    // re calculate summury ( in, out, interest )
+    calcDisplaySummary(currentUser.movements);
+    // re-calculate total balance
+    calcBalances();
+  }
+  else console.log('No recipient userName found || -ve amount');
+
+  clearTransferFormFields();
+}
+
+function depositeMoney (acc, amount) {
+  acc.movements.push(amount);
+}
+
+function withDrawalMoney (amount) {
+  if (!currentUser)
+    return;
+  currentUser.movements.push(0 - amount);
+}
+
+function newTransaction (amount, isDebit) {
+  const transType = isDebit > 0 ? 'deposit' : 'withdrawal';
+    
+  const transTag = `<div class="movements__row">
+    <div class="movements__type movements__type--${transType}">
+      ${currentUser.movements.length} ${transType}
+    </div>
+    <div class="movements__date">X days ago</div>
+    <div class="movements__value">${amount}€</div>
+  </div>`;
+  console.log('new transaction');
+  containerMovements.insertAdjacentHTML('afterbegin', transTag);
+}
+
+function clearTransferFormFields () {
+  inputTransferTo.value = '';
+  inputTransferAmount.value = '';
+}
+
+btnTransfer.addEventListener('click', transferMoney);
 
 
 /////////////////////////////////////////////////
@@ -293,6 +402,7 @@ console.log(totalDepositsUSD);
 */
 
 
+/*
 // find () return the first element that satisfies given condition
 // only returns 1 element
 const firstWithDrawal = account1.movements.find(mov => mov < 0);
@@ -304,3 +414,4 @@ console.log(str.find( (ele)=> ele == 'b')); // undefined
 
 const account = accounts.find( (acc) => acc.owner == 'Jessica Davis');
 console.log(account); // object 
+*/
