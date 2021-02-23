@@ -477,7 +477,7 @@ console.log(account); // object
 */
 
 
-
+/*
 // some(): returns true/false
 console.log(account1.movements);
 
@@ -489,3 +489,19 @@ console.log(account1.movements.some( (mov) => mov === -130)); // true
 
 const anyBigDeposits = account1.movements.some( (mov) => mov > 1500); // true
 console.log(anyBigDeposits);
+*/
+
+
+// every(): return true if every elemeny
+
+// check for all mov are deposits?
+console.log(account1.movements.every( (mov) => mov > 0)); // false
+console.log(account4.movements.every( (mov) => mov > 0));
+
+// separate callbacks....
+console.log('--separate callbacks--');
+const depositCheck = mov => mov > 0;
+console.log(account1.movements.some(depositCheck));
+console.log(account1.movements.every(depositCheck));
+console.log(account1.movements.filter(depositCheck));
+console.log(account1.movements.map(depositCheck)); 
