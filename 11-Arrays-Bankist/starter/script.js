@@ -239,6 +239,37 @@ function clearTransferFormFields () {
 btnTransfer.addEventListener('click', transferMoney);
 
 
+function deleteAccount (e) {
+  e.preventDefault();
+  if (inputClosePin.value && inputCloseUsername.value) return;
+  if (inputCloseUsername.value == currentUser.userName 
+    && Number(inputClosePin.value) == currentUser.pin) {
+    
+    const index = accounts.findIndex( (acc) => acc.userName == currentUser.userName);
+    if (index) {
+      console.log( accounts.splice(index,1));
+      logout();
+    }
+    else console.log('Something went wrong');
+  }
+  else console.log('No account found to be deleted...');
+  clearCloseFormFields();
+  
+}
+
+function logout () {
+  resetPage();
+  currentUser = null;
+}
+
+function clearCloseFormFields () {
+  inputClosePin.value = '';
+  inputCloseUsername.value = '';
+}
+
+btnClose.addEventListener('click', deleteAccount);
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
