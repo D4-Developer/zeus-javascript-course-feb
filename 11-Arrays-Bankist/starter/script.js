@@ -492,8 +492,8 @@ console.log(anyBigDeposits);
 */
 
 
+/*
 // every(): return true if every elemeny
-
 // check for all mov are deposits?
 console.log(account1.movements.every( (mov) => mov > 0)); // false
 console.log(account4.movements.every( (mov) => mov > 0));
@@ -505,3 +505,42 @@ console.log(account1.movements.some(depositCheck));
 console.log(account1.movements.every(depositCheck));
 console.log(account1.movements.filter(depositCheck));
 console.log(account1.movements.map(depositCheck)); 
+*/
+
+
+// flat()
+// returns the flattned array
+// only goes 1 leval deep (default)
+const arrr = [[1,2,3], [4,5], 6,7,8];
+console.log(arrr.flat());
+
+const arrDeep = [[1,2,[3,4],5], [6,[7,8]]];
+console.log(arrDeep.flat());
+console.log(arrDeep.flat(2));
+
+//ex.1) accounts movments
+const accountMovements = accounts.map( acc => acc.movements);
+console.log(accountMovements);
+
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+
+const overallBalance = allMovements.reduce ((acc, mov) => acc + mov, 0);
+console.log(overallBalance); // 17840
+
+// ex.2) chaining in ex.1)
+const overallBalanceChain = accounts
+  .map( (acc) => acc.movements)
+  .flat()
+  .reduce( (acc, mov) => acc + mov, 0);
+
+console.log(overallBalanceChain); // 17840
+
+
+// flatMap(): combination of map() & flat()
+// only goes 1 leval deep, we need to use separate map() ,flat() for more than 1 leval deeper flat()
+const overallBalanceChain1 = accounts
+  .flatMap( (acc) => acc.movements )
+  .reduce( (acc, mov) => acc + mov, 0);
+
+console.log(overallBalanceChain1); // 17840
