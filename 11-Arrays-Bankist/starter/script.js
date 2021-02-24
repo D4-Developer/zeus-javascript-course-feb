@@ -559,7 +559,7 @@ console.log(overallBalanceChain1); // 17840
 */
 
 
-
+/*
 // ::::: sorting array;
 // mutates the array
 // converts everything in string & then sorts the strings
@@ -578,3 +578,57 @@ movs.sort( (a,b) => a > b); // ascending // (a,b) => a-b
 console.log(movs);
 movs.sort( (a,b) => a < b); // descending // (a-b) => b-a
 console.log(movs);
+*/
+
+
+
+// more ways of filling array
+
+const x = new Array(7);
+console.log(x); // 7 empty elements(slots)
+
+x.map ( (ele) => 1);  // will not work...
+console.log(x); // 7 empty elements(slots)
+
+// solution :: mutate the array
+// fill( val, startIndex, endIndex - 1);
+x.fill(0); //  will work..... all element = 0
+x.fill(1, 2, 4);
+x.fill(0, 0, 2);
+x.fill(2, 4);
+x.fill(3, 5);
+console.log(x);
+
+x.fill(-1, 3, 10); /// 10 will be ignored because arr length = 7 only
+console.log(x);
+
+
+// Array.from( {length: n}, mapping-function )
+console.log('----Array.from()----');
+const y = Array.from({length: 7}, () => -1*2);
+console.log(y);
+
+const z = Array.from( {length: 7}, (_,i) => i+1);
+console.log(z);
+
+const a = Array.from( {length: 100}, (_,i) => Math.trunc(Math.random()*100));
+console.log(a);
+
+ // 2 div specified in HTML already
+
+labelBalance.addEventListener('click', function() {
+  // document.querySelectorAll('').map( () {} ); // will not work because,
+  //  it returns NodeList not an Array, which is an Array-like structure
+  //  NodeList can easily converted to Array using Array.from();
+
+  //  Array.from( {} , MapFunction).map( (e) => e.replace()); // will work
+  const movementsUI = Array.from(document.querySelectorAll('.movements__value'))
+    .map( el => el.textContent.replace('€', ' '));
+  console.log(movementsUI); // all transactions amount in single array
+
+
+  // #refactor : using Array.from ( , mappingFunction);
+  const movementsUIRefactored = Array.from(document.querySelectorAll('.movements__value'),  el => el.textContent.replace('€', ' '))
+  console.log(movementsUIRefactored); // same as above log
+})
+
