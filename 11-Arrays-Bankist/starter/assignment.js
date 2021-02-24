@@ -58,6 +58,7 @@ calcAverageHumanAge(dog21);
 */
 
 
+/*
 // #3
 function calcAverageHumanAge_chaining(dogs) {
     const average = dogs.map( (age) => {
@@ -74,3 +75,69 @@ function calcAverageHumanAge_chaining(dogs) {
 
 console.log(calcAverageHumanAge_chaining(dog20));
 console.log(calcAverageHumanAge_chaining(dog21));
+*/
+
+
+
+// #4
+
+const dogs = [
+    { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+    { weight: 8, curFood: 200, owners: ['Matilda'] },
+    { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+    { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+// 1)
+dogs.map( (dog) => {
+    dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28);
+    return dog;
+});
+
+// 2)
+console.log(dogs);
+const dogSarah = dogs.find( (dog) => dog.owners.includes('Sarah') );
+console.log(dogSarah);
+
+const r = dogSarah.recommendedFood;
+const strSarahDog = dogSarah.curFood > r
+    ? 'too much' 
+    : dogSarah.curFood < r
+    ? 'too little' : 'Okay';
+
+console.log(dogSarah.curFood, dogSarah.recommendedFood);
+console.log(strSarahDog);
+
+// 3)
+const tooLittleOwners = dogs
+    .filter( (dog) => dog.curFood < dog.recommendedFood)
+    .map( (dog) => dog.owners).flat();
+
+console.log("tooLittle:",tooLittleOwners);
+
+const tooMuchOwners = dogs
+    .filter( (dog) => dog.curFood > dog.recommendedFood)
+    .map( (dog) => dog.owners).flat();
+
+console.log("tooMuch",tooMuchOwners);
+
+// 4)
+console.log(`${tooLittleOwners.join(' and ')}'s dogs eat too little!`);
+console.log(`${tooMuchOwners.join(' and ')}'s dogs eat too much!`);
+
+// 5)
+console.log(dogs.some( (dog) => dog.curFood == dog.recommendedFood));
+
+// 6)
+const checkEatingOkay = (dog) => 
+dog.curFood > dog.recommendedFood * 0.9 
+&& dog.curFood < dog.recommendedFood * 1.1 ;
+console.log(dogs.some(checkEatingOkay));
+
+// 7)
+console.log(dogs.filter(checkEatingOkay));
+
+// 8)
+const sortedDogs = Array.from(dogs)
+    .sort( (dog1, dog2) => dog1.recommendedFood - dog2.recommendedFood);
+console.log(sortedDogs);
