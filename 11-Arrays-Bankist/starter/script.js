@@ -704,6 +704,7 @@ console.log(convertTitleCase('and here is another title with an EXAMPLE'));
 
 
 
+/*
 console.log(23 === 23.0); // true
 console.log(null == undefined); // true
 console.log(null === undefined); // false
@@ -743,3 +744,51 @@ console.log(Number.isInteger(23)); // T
 console.log(Number.isInteger('23')); // F
 console.log(Number.isInteger(+'23x')); // F
 console.log(Number.isInteger(23 / 0)); // F
+*/
+
+
+
+// Math.____();
+
+// Math.sqrt(), ** : power
+console.log(Math.sqrt(25));
+console.log(25 ** (1/2)); // square root
+console.log(8 ** (1/3)); // qube root
+
+console.log('-- Math.max() --'); // no parsing
+console.log(Math.max(5, 10, 15)); // 15
+console.log(Math.max(5, 10, 15, '23')); // 23
+console.log(Math.max(5, 10, 15, '23px')); // NaN
+
+console.log('-- Math.min() --'); // no parsing
+console.log(Math.min(5, 10, 15));
+console.log(Math.min(5, 10, 15, '2')); // 2
+console.log(Math.min('3px', 5, 10, 15, )); // NaN
+
+console.log('-- Math.PI --');
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+console.log('-- Math.random() --');
+console.log(Math.floor(Math.random() * 6 + 1));
+// generalize random function to generate random between 2 value
+
+function getRand(min, max) {
+  return Math.floor(Math.random() * (max - min) + 1) + min;
+}
+
+console.log(getRand(10,20));
+
+console.log('trunc: ', Math.trunc(23.3));
+console.log('trunc: ', Math.trunc(23.9));
+console.log('round: ', Math.round(23.3));
+console.log('round: ', Math.round(23.9));
+console.log('ceil: ', Math.ceil(23.3));
+console.log('ceil: ', Math.ceil(23.9));
+console.log('floor: ', Math.floor(23.9));
+console.log('floor: ', Math.floor(-23.9));
+
+// Rounding decimals : returns String
+console.log('toFixed: ',(2.7).toFixed(0)); // 3
+console.log((2.7).toFixed(3)); // 2.700
+console.log((2.345).toFixed(2)); // 2.35 
+console.log(+(2.345).toFixed(2)); // 2.35:Number
