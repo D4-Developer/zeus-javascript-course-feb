@@ -635,6 +635,7 @@ labelBalance.addEventListener('click', function() {
 
 
 
+/*
 
 ///////////////////////////////////////
 // Array Methods Practice
@@ -699,3 +700,46 @@ console.log(convertTitleCase('and here is another title with an EXAMPLE'));
 
 
 ///////////////////////////////////////
+*/
+
+
+
+console.log(23 === 23.0); // true
+console.log(null == undefined); // true
+console.log(null === undefined); // false
+
+
+// numbers are stored in base 2::::
+console.log(0.1 + 0.2); // wierd
+console.log(0.1 + 0.2 == 0.3); // === also false
+
+console.log(Number('23')); // number
+console.log(+23); // number short-hand
+
+// Parsing
+// parseInt( _, base );
+console.log(Number.parseInt(' 32px ')); // 32
+console.log(Number.parseInt('abc123')); // NaN
+console.log(Number.parseInt('2.5rem')); // 2
+console.log(Number.parseFloat(' 2.5rem   ')); // 2.5
+
+// isNaN( ) :: checking if value is NaN
+console.log('--- isNan() ---');
+console.log(Number.isNaN(20)); // F
+console.log(Number.isNaN('20')); // F
+console.log(Number.isNaN(+'20x')); // T
+console.log(Number.isNaN(23 / 0)); // F
+
+// isFinite( ) :: checking if value is number
+console.log('--- isFinite() ---'); 
+console.log(Number.isFinite(20)); // F
+console.log(Number.isFinite('20')); // F
+console.log(Number.isFinite(+'20x')); // F
+console.log(Number.isFinite(23 / 0)); // F
+
+//  isInterger( ) :: checking if value is int
+console.log('--- isInteger() ---'); 
+console.log(Number.isInteger(23)); // T
+console.log(Number.isInteger('23')); // F
+console.log(Number.isInteger(+'23x')); // F
+console.log(Number.isInteger(23 / 0)); // F

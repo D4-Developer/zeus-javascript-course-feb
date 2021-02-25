@@ -130,8 +130,8 @@ console.log(dogs.some( (dog) => dog.curFood == dog.recommendedFood));
 
 // 6)
 const checkEatingOkay = (dog) => 
-dog.curFood > dog.recommendedFood * 0.9 
-&& dog.curFood < dog.recommendedFood * 1.1 ;
+    dog.curFood > dog.recommendedFood * 0.9 
+    && dog.curFood < dog.recommendedFood * 1.1 ;
 console.log(dogs.some(checkEatingOkay));
 
 // 7)
