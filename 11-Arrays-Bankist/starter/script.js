@@ -748,6 +748,7 @@ console.log(Number.isInteger(23 / 0)); // F
 
 
 
+/*
 // Math.____();
 
 // Math.sqrt(), ** : power
@@ -792,3 +793,40 @@ console.log('toFixed: ',(2.7).toFixed(0)); // 3
 console.log((2.7).toFixed(3)); // 2.700
 console.log((2.345).toFixed(2)); // 2.35 
 console.log(+(2.345).toFixed(2)); // 2.35:Number
+*/
+
+
+
+// BigInt
+
+console.log(2 ** 53 - 1); // js can store less or equal to this into Number
+console.log(Number.MAX_SAFE_INTEGER);
+
+console.log(5464687468432513186576874646468476874);
+console.log(5464687468432513186576874646468476874n); // n notation for BigInt
+console.log(BigInt(5464687468432513186576874646468476874));
+console.log(BigInt(1234));
+
+// operations
+console.log(1000n - 100n);
+console.log(1000n * 100n);
+
+const huge = 5464687468432513186576874646468476874n;
+const small = 12;
+// console.log(small + huge); // -- error --
+// console.log(huge - small); // -- error --
+// solution
+console.log(huge - BigInt(small)); // solution return also the BigInt
+
+
+console.log(20n > 15); // True
+console.log(20n === 20); // False - because of different types(int, BigInt)
+console.log(typeof 20n); // bigint
+console.log(20n == '20'); // True
+
+// console.log(Math.sqrt(16n)); // -- error --
+
+// Divisions
+// console.log(11n / 3); // -- error --
+console.log(11n / 3n); // return the BigInt of truncated result
+console.log(11 / 3);
