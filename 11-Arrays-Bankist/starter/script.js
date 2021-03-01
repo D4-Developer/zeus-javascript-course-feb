@@ -796,7 +796,7 @@ console.log(+(2.345).toFixed(2)); // 2.35:Number
 */
 
 
-
+/*
 // BigInt
 
 console.log(2 ** 53 - 1); // js can store less or equal to this into Number
@@ -830,3 +830,41 @@ console.log(20n == '20'); // True
 // console.log(11n / 3); // -- error --
 console.log(11n / 3n); // return the BigInt of truncated result
 console.log(11 / 3);
+*/
+
+
+
+// Dates in javascript
+
+// create a date
+const now = new Date(); // returns the system/device time,date
+console.log(now);
+
+console.log(new Date('Mon Mar 01 2021'));
+console.log(new Date('December, 2021'));
+
+console.log(new Date(2010, 10, 10, 10, 10, 10)); // month is 0 based start
+console.log(new Date(2010, 10, 31)); // will become Dec, 1 instead of nov, 31
+
+console.log(new Date(0)); // jan, 1, 1970
+// 3 * 24 * 60 * 60 * 1000 is a timestamp
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); // jan, 4
+
+
+// working with dates
+const future = new Date(2037, 10, 19, 15, 23)
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate()); 'date.day'
+console.log(future.getDay()); '0-7' // week 
+console.log(future.getSeconds());
+console.log(future.toISOString()); // Date format 
+
+console.log(future.getTime()); // timestamp
+console.log(new Date(future.getTime()));
+console.log(Date.now()); // current timestamp
+
+future.setFullYear(2020);
+future.setMonth(0); 'jan'
+future.setDate(31);
