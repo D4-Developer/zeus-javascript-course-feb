@@ -124,15 +124,32 @@ function resetPage() {
   containerMovements.innerHTML = '';
 }
 
+// Experimenting Intl API
+
+const n = new Date();
+// labelDate.textContent = new Intl.DateTimeFormat('ind').format(n);
+
+const options = {
+  hour: 'numeric',
+  minute: 'numeric',
+  day: 'numeric',
+  month: 'long', // numeric/2-digit
+  weekday: 'long'
+}
+// labelDate.textContent = new Intl.DateTimeFormat('gu-IN',options).format(n);
+
+
 function setupLoggedInPage() {
   if (isLoggedIn) return;
   labelWelcome.textContent = `Welcome back, ${currentUser.owner.split(' ')[0]}`;
   inputLoginUsername.value = '';
   inputLoginPin.value = '';
-  labelDate.textContent = calcDate(new Date());
+  // labelDate.textContent = calcDate(new Date());
   displayTransactions(currentUser);
   calcDisplaySummary(currentUser.movements);
   calcBalances();
+labelDate.textContent = new Intl.DateTimeFormat(currentUser.locale,options).format(n);
+
 }
 
 function calcDate(date, isTimeNeeded = false) {
@@ -143,9 +160,10 @@ function calcDate(date, isTimeNeeded = false) {
   const hour = `${date.getHours()}`.padStart(2,0);
   const min = `${date.getMinutes()}`.padStart(2,0);
 
-  if (isTimeNeeded)
-    return `${day}/${month}/${year}, ${hour}:${min}`;
-  
+  if (isTimeNeeded) {
+    return new Intl.DateTimeFormat(currentUser.locale).format(date);
+    // return `${day}/${month}/${year}, ${hour}:${min}`;
+  }
   const calcDaysPassed = (d1, d2) => Math.abs(d2 - d1) / (1000 * 60 * 60 * 24);
 
   const daysPassed = Math.floor(calcDaysPassed(new Date(), date));
@@ -153,8 +171,10 @@ function calcDate(date, isTimeNeeded = false) {
   else if (daysPassed == 1) return 'Yesterday'
   else if (daysPassed <= 7) return `${daysPassed} days ago`;
 
-  console.log(daysPassed);
-  return `${day}/${month}/${year}`;
+  // console.log(daysPassed);
+  return new Intl.DateTimeFormat(currentUser.locale).format(date);
+
+  // return `${day}/${month}/${year}`;
 }
 
 function displayTransactions (acc) {
