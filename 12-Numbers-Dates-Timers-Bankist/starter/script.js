@@ -16,14 +16,14 @@ const account1 = {
   pin: 1111,
 
   movementsDates: [
-    '2019-11-18T21:31:17.178Z',
-    '2019-12-23T07:42:02.383Z',
-    '2020-01-28T09:15:04.904Z',
-    '2020-04-01T10:17:24.185Z',
-    '2020-05-08T14:11:59.604Z',
-    '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2020-12-18T21:31:17.178Z',
+    '2020-12-23T07:42:02.383Z',
+    '2021-01-02T09:15:04.904Z',
+    '2021-01-08T10:17:24.185Z',
+    '2021-02-08T14:11:59.604Z',
+    '2021-02-24T17:01:17.194Z',
+    '2021-02-26T23:36:17.929Z',
+    '2021-02-28T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -145,7 +145,15 @@ function calcDate(date, isTimeNeeded = false) {
 
   if (isTimeNeeded)
     return `${day}/${month}/${year}, ${hour}:${min}`;
-    
+  
+  const calcDaysPassed = (d1, d2) => Math.abs(d2 - d1) / (1000 * 60 * 60 * 24);
+
+  const daysPassed = Math.floor(calcDaysPassed(new Date(), date));
+  if (daysPassed == 0) return 'Today';
+  else if (daysPassed == 1) return 'Yesterday'
+  else if (daysPassed <= 7) return `${daysPassed} days ago`;
+
+  console.log(daysPassed);
   return `${day}/${month}/${year}`;
 }
 
@@ -156,10 +164,10 @@ function displayTransactions (acc) {
   const movs = needSort ? acc.movements.slice().sort( (a,b) => a - b) : acc.movements; 
   
   movs.forEach( function (trans, i) {
-    // const dateText = calcDate(new Date(acc.movementsDates[i]));
-    if (needSort) {
-      acc.movementsDates.findIndex( (date))
-    }
+    const dateText = calcDate(new Date(acc.movementsDates[i]));
+    // if (needSort) {
+    //   acc.movementsDates.findIndex( (date))
+    // }
     const transType = trans > 0 ? 'deposit' : 'withdrawal';
     
     const transTag = `<div class="movements__row">
@@ -250,9 +258,8 @@ function transferMoney (e) {
     // re-calculate total balance
     calcBalances();
     // add timestamp of this new Transaction in currentUser as well recipientUser
-    acc.movementsDates.push(new Date().toISOString());
+    recipient.movementsDates.push(new Date().toISOString());
     currentUser.movementsDates.push(new Date().toISOString());
-
   }
   else console.log('No recipient userName found || -ve amount');
 
@@ -535,3 +542,21 @@ future.setFullYear(2020);
 future.setMonth(0); 'jan'
 future.setDate(31);
 */
+
+
+
+// opeartions on Date
+const dd = new Date(2037,10,19,15,23);
+console.log(+dd);
+
+const calcDaysPassed = (d1, d2) => Math.abs(d2 - d1);
+
+const days1 = calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 24));
+console.log(days1);
+console.log(days1 / (1000)); 'difference representation in seconds'
+console.log(days1 / (1000 * 60)); 'difference representation in minutes'
+console.log(days1 / (1000 * 60 * 60)); 'difference representation in hours'
+console.log(days1 / (1000 * 60 * 60 * 24)); 'difference representation in days'
+
+const days2 = calcDaysPassed(new Date(2037, 3, 14, 10, 10), new Date(2037, 3, 24));
+console.log(days2 / (1000 * 60 * 60 * 24)); // wierd floating point output
