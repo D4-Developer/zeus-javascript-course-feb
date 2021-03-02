@@ -85,6 +85,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 let isLoggedIn = false;
 let currentUser;
 let needSort = false;
+let logoutInterval;
 
 function login(e) {
   // form element's default behaviour is to submit the page
@@ -138,9 +139,39 @@ const options = {
 }
 // labelDate.textContent = new Intl.DateTimeFormat('gu-IN',options).format(n);
 
+function startLogoutTimer() {
+  // set timeout to X minutes
+  let minutes = 1, seconds = 19;
+  labelTimer.textContent = '01:20';
+  
+  // call the time every seconds to display it
+  function timerData() {
+      labelTimer.textContent = `${minutes}`.padStart(2,0) + ':' 
+        + `${seconds}`.padStart(2,0);
+      if (seconds == 0) {
+        --minutes;
+        seconds = 60;
+      }
+      if (minutes == -1){
+        resetPage();
+        currentUser = null;
+        clearInterval(logoutInterval);
+        seconds = 59;
+        minutes = 0
+      }
+      --seconds;
+  }
+  logoutInterval = setInterval( timerData, 1000);
+
+  // if it's 00:00 logout the currentUser
+  
+}
 
 function setupLoggedInPage() {
-  if (isLoggedIn) return;
+  if (isLoggedIn) {
+    clearInterval(logoutInterval);
+    return;
+  };
   labelWelcome.textContent = `Welcome back, ${currentUser.owner.split(' ')[0]}`;
   inputLoginUsername.value = '';
   inputLoginPin.value = '';
@@ -148,8 +179,9 @@ function setupLoggedInPage() {
   displayTransactions(currentUser);
   calcDisplaySummary(currentUser.movements);
   calcBalances();
-labelDate.textContent = new Intl.DateTimeFormat(currentUser.locale,options).format(n);
-
+  clearInterval(logoutInterval);
+  startLogoutTimer();
+  labelDate.textContent = new Intl.DateTimeFormat(currentUser.locale,options).format(n);
 }
 
 function calcDate(date, isTimeNeeded = false) {
@@ -597,6 +629,7 @@ console.log(days2 / (1000 * 60 * 60 * 24)); // wierd floating point output
 
 
 
+/*
 // format number
 const num = 45654564.45;
 console.log('US:', new Intl.NumberFormat('en-US').format(num));
@@ -612,3 +645,27 @@ const nOptions = {
 console.log('US:', new Intl.NumberFormat('en-US', nOptions).format(num));
 console.log('US:', new Intl.NumberFormat('de-GE', nOptions).format(num));
 console.log('US:', new Intl.NumberFormat('ar-SY', nOptions).format(num));
+*/
+
+
+
+// setTimeout() :: simply scheduals the function after certain amount of time.
+// setTimeout( fn() {}, millisecondsTime, argumentsOfFunctionCalling);
+setTimeout( (a,b) => {
+  console.log('a+b: ', a+b);
+}, 3000, 3,2);
+
+console.log('waiting');
+
+const args = ['item1', 'item2'];
+const pizzaTimer = setTimeout( (i, ii) => {
+  console.log('Here is your pizza with: ', i, ii);
+}, 4000, ...args);
+
+// clear setTimeout()
+if (args[0] == 'item1')
+  clearTimeout(pizzaTimer);
+
+
+// setInterval :: scheduals the function on repetation mode
+// setInterval( () => console.log(new Date().getSeconds()), 1000);
