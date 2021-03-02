@@ -188,12 +188,17 @@ function displayTransactions (acc) {
     // if (needSort) {
     //   acc.movementsDates.findIndex( (date))
     // }
+    const transFormat = new Intl.NumberFormat(acc.locale, {
+      style: 'currency',
+      currency: acc.currency
+    }).format(trans);
+
     const transType = trans > 0 ? 'deposit' : 'withdrawal';
     
     const transTag = `<div class="movements__row">
       <div class="movements__type movements__type--${transType}">${i + 1} ${transType}</div>
       <div class="movements__date">${dateText}</div>
-      <div class="movements__value">${trans}€</div>
+      <div class="movements__value">${transFormat}</div>
     </div>`;
 
     containerMovements.insertAdjacentHTML('afterbegin', transTag);
@@ -214,11 +219,18 @@ function createUserNames () {
 
 createUserNames();
 
+function balanceFormat(amount) {
+  return new Intl.NumberFormat(currentUser.locale, {
+    style: 'currency',
+    currency: currentUser.currency
+  }).format(amount);
+}
+
 function calcBalances() {
   currentUser.balance = currentUser.movements
     .reduce( (acc, mov) => acc + mov, 0);
   
-  labelBalance.textContent = `${currentUser.balance}€`;
+  labelBalance.textContent = balanceFormat(currentUser.balance);
 }
 
 // calcBalances();
@@ -232,20 +244,20 @@ function calcDisplaySummary(movements) {
     .filter( (mov) => mov > 0)
     .reduce( ((acc, mov) => acc + mov) ,0);
 
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = balanceFormat(incomes);
 
   const out = movements
     .filter( (mov) => mov < 0)
     .reduce( (acc, mov) => acc + mov ,0);
   
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = balanceFormat(out);
 
   const interest = movements
     .filter( (mov) => mov > 0)
     .map ( (deposit) => (deposit * intRate) / 100 )
     .filter ( (int, arr) => int > 1) // less than 1 interest will be discarded
     .reduce ( (acc, interest) => acc + interest , 0);
-  labelSumInterest.textContent = `${interest}€`
+  labelSumInterest.textContent = balanceFormat(interest);
 }
 
 // calcDisplaySummary(account1.movements);
@@ -565,6 +577,7 @@ future.setDate(31);
 
 
 
+/*
 // opeartions on Date
 const dd = new Date(2037,10,19,15,23);
 console.log(+dd);
@@ -580,3 +593,22 @@ console.log(days1 / (1000 * 60 * 60 * 24)); 'difference representation in days'
 
 const days2 = calcDaysPassed(new Date(2037, 3, 14, 10, 10), new Date(2037, 3, 24));
 console.log(days2 / (1000 * 60 * 60 * 24)); // wierd floating point output
+*/
+
+
+
+// format number
+const num = 45654564.45;
+console.log('US:', new Intl.NumberFormat('en-US').format(num));
+console.log('US:', new Intl.NumberFormat('de-GE').format(num));
+console.log('US:', new Intl.NumberFormat('ar-SY').format(num));
+const nOptions = {
+  style: 'unit', // 'percent', 'currency'
+  unit: 'mile-per-hour', // 'celcius'
+  currency: 'EUR',
+  useGouping: false
+}
+
+console.log('US:', new Intl.NumberFormat('en-US', nOptions).format(num));
+console.log('US:', new Intl.NumberFormat('de-GE', nOptions).format(num));
+console.log('US:', new Intl.NumberFormat('ar-SY', nOptions).format(num));
