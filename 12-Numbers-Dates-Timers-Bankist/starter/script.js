@@ -129,23 +129,42 @@ function setupLoggedInPage() {
   labelWelcome.textContent = `Welcome back, ${currentUser.owner.split(' ')[0]}`;
   inputLoginUsername.value = '';
   inputLoginPin.value = '';
-  displayTransactions(currentUser.movements);
+  labelDate.textContent = calcDate(new Date());
+  displayTransactions(currentUser);
   calcDisplaySummary(currentUser.movements);
   calcBalances();
+}
+
+function calcDate(date, isTimeNeeded = false) {
+
+  const day = `${date.getDate()}`.padStart(2,0);
+  const month = `${date.getMonth() + 1}`.padStart(2,0);
+  const year = date.getFullYear();
+  const hour = `${date.getHours()}`.padStart(2,0);
+  const min = `${date.getMinutes()}`.padStart(2,0);
+
+  if (isTimeNeeded)
+    return `${day}/${month}/${year}, ${hour}:${min}`;
+    
+  return `${day}/${month}/${year}`;
 }
 
 function displayTransactions (acc) {
   // 
   containerMovements.innerHTML = '';
 
-  const movs = needSort ? acc.slice().sort( (a,b) => a - b) : acc; 
+  const movs = needSort ? acc.movements.slice().sort( (a,b) => a - b) : acc.movements; 
   
   movs.forEach( function (trans, i) {
+    // const dateText = calcDate(new Date(acc.movementsDates[i]));
+    if (needSort) {
+      acc.movementsDates.findIndex( (date))
+    }
     const transType = trans > 0 ? 'deposit' : 'withdrawal';
     
     const transTag = `<div class="movements__row">
       <div class="movements__type movements__type--${transType}">${i + 1} ${transType}</div>
-      <div class="movements__date">X days ago</div>
+      <div class="movements__date">${dateText}</div>
       <div class="movements__value">${trans}€</div>
     </div>`;
 
@@ -154,6 +173,8 @@ function displayTransactions (acc) {
 }
 
 // displayTransaction(account1.movements);
+
+
 
 function createUserNames () {
   accounts.forEach( function (acc) {
@@ -228,6 +249,10 @@ function transferMoney (e) {
     calcDisplaySummary(currentUser.movements);
     // re-calculate total balance
     calcBalances();
+    // add timestamp of this new Transaction in currentUser as well recipientUser
+    acc.movementsDates.push(new Date().toISOString());
+    currentUser.movementsDates.push(new Date().toISOString());
+
   }
   else console.log('No recipient userName found || -ve amount');
 
@@ -245,13 +270,15 @@ function withDrawalMoney (amount) {
 }
 
 function newTransaction (amount, isDebit) {
+
+  const dateText = calcDate(new Date());
   const transType = isDebit != 0 ? 'deposit' : 'withdrawal';
     
   const transTag = `<div class="movements__row">
     <div class="movements__type movements__type--${transType}">
       ${currentUser.movements.length} ${transType}
     </div>
-    <div class="movements__date">X days ago</div>
+    <div class="movements__date">${dateText}</div>
     <div class="movements__value">${amount}€</div>
   </div>`;
   console.log('new transaction');
@@ -265,6 +292,8 @@ function clearTransferFormFields () {
 
 btnTransfer.addEventListener('click', transferMoney);
 
+
+//// :::::::::::::: Loan Request :::::::::::::::::: ////
 
 function loanRequest (e) {
   e.preventDefault();
@@ -284,6 +313,8 @@ function loanRequest (e) {
      calcDisplaySummary(currentUser.movements);
      // re-calculate total balance
      calcBalances();
+     // add timestamp of this new Transaction to current user
+    currentUser.movementsDates.push(new Date().toISOString());
     console.log('loan approved');
   }
   else console.log('You are not eligible for this loan amount');
@@ -329,7 +360,7 @@ btnClose.addEventListener('click', deleteAccount);
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
   needSort = !needSort;
-  displayTransactions(currentUser.movements, 1);
+  displayTransactions(currentUser, 1);
 });
 
 
