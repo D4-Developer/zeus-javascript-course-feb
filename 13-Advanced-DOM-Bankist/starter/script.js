@@ -37,6 +37,7 @@ document.addEventListener('keydown', function (e) {
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
 
 
+
 console.log(document.documentElement); // returns entire document from HTML tag
 console.log(document.head); // returns head element
 console.log(document.body); // returns body element
@@ -79,3 +80,57 @@ document.querySelector('.btn--close--cookie')
   '3.'
   // message.parentElement.removeChild(message); // same as above
 });
+
+
+
+
+// Styles :: these are applied as Inline style
+message.style.backgroundColor = '#374757';
+message.style.width = '120%';
+
+// return inline-style properties only if exist, otherwise empty string
+console.log(message.style.height); 
+console.log(message.style.backgroundColor);
+
+// solution
+console.log(getComputedStyle(message)); // returns all currently applied CSS-properites
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height = Number.parseFloat(
+  getComputedStyle(message).height)
+  + 50 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+
+// Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+// Non-standard attributes access;
+console.log(logo.designer);
+// Solution of accessing Non-standard Attributes;
+console.log(logo.getAttribute('designer'));
+
+logo.setAttribute('designer', 'darshan');
+console.log(logo.getAttribute('designer'));
+
+const link = document.querySelector('.twitter-link');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+console.log(document.querySelector('.nav__link--btn').getAttribute('href'));
+
+// special attributes 
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add('');
+logo.classList.remove('');
+logo.classList.toggle('');
+logo.classList.contains('');
+
+// this will cleared all entries in the classList & set the new className.
+logo.className = 'newClass';
