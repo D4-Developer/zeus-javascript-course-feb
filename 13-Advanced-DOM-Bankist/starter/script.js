@@ -70,43 +70,8 @@ document.querySelector('.nav__links')
   });
 
 
-// DOM Traversing
 
-const h1Ele = document.querySelector('h1');
-
-// Going downwards: child
-console.log(h1Ele.querySelectorAll('.highlight')); // do as deep as necessary
-console.log(h1Ele.childNodes); // immediate childs :: NodeList
-console.log(h1Ele.children); // :: HTMLCollection
-h1Ele.firstElementChild.style.color = 'cyan';
-h1Ele.lastElementChild.style.color = 'darkcyan';
-
-// Going upwards: parent
-console.log(h1Ele.parentNode); // direct parent
-console.log(h1Ele.parentElement); // direct parent
-
-  // closest parent:: will go until it finds the required parent in condition
-  h1Ele.closest('.header').style.background = 'var(--gradient-secondary)';
-  h1Ele.closest('h1').style.background = 'var(--gradient-primary)'; // h1 element itself
-  // so closest is opposite of querySelector(),
-  // as querySelector() will find child element,
-  // while closest() will find Parent element
-
-// Going sideways: direct siblings access
-console.log(h1Ele.previousElementSibling); // null as h1 is first element of parent <div>
-console.log(h1Ele.nextElementSibling); // next element from <h1>
-
-console.log(h1Ele.previousSibling);
-console.log(h1Ele.nextSibling);
-  
-  // get all sibling:: get children of parent
-  console.log(h1Ele.parentElement.children);
-  // [...h1Ele.parentElement.children].forEach( function (el) {
-    // if (el !== h1Ele) el.style.transform = 'scale(0.5)';
-  // });
-
-
-
+// operations tab ::::
 const tabsBtns = document.querySelectorAll('.operations__tab');
 const tabsContent = document.querySelectorAll('.operations__content');
 const tabsContainer = document.querySelector('.operations__tab-container');
@@ -131,6 +96,37 @@ tabsContainer.addEventListener('click', function(e) {
   document.querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+
+
+// Menu fade animation ::::
+const nav = document.querySelector('.nav');
+
+const handleHover = function (e) {
+  console.log(this);
+
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    // const siblings = document.querySelectorAll('.nav__link');
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    // const logo = document.querySelector('img');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach ( (sb) => {
+      if (sb !== link) sb.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+}
+
+// 1.) nav.addEventListener('mouseover', function(e) {
+  //   handleHover(0.5);
+  // });
+
+// 2.)
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+
+nav.addEventListener('mouseout', handleHover.bind(1));
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
 
@@ -344,4 +340,43 @@ document.querySelector('.nav').addEventListener('click', function(e) {
 // e.stopPropagation(); if use this in capturing element:) 
 // no one after this capturing element will be listeninig for event....
 
+*/
+
+
+
+/*
+// DOM Traversing
+
+const h1Ele = document.querySelector('h1');
+
+// Going downwards: child
+console.log(h1Ele.querySelectorAll('.highlight')); // do as deep as necessary
+console.log(h1Ele.childNodes); // immediate childs :: NodeList
+console.log(h1Ele.children); // :: HTMLCollection
+h1Ele.firstElementChild.style.color = 'cyan';
+h1Ele.lastElementChild.style.color = 'darkcyan';
+
+// Going upwards: parent
+console.log(h1Ele.parentNode); // direct parent
+console.log(h1Ele.parentElement); // direct parent
+
+  // closest parent:: will go until it finds the required parent in condition
+  h1Ele.closest('.header').style.background = 'var(--gradient-secondary)';
+  h1Ele.closest('h1').style.background = 'var(--gradient-primary)'; // h1 element itself
+  // so closest is opposite of querySelector(),
+  // as querySelector() will find child element,
+  // while closest() will find Parent element
+
+// Going sideways: direct siblings access
+console.log(h1Ele.previousElementSibling); // null as h1 is first element of parent <div>
+console.log(h1Ele.nextElementSibling); // next element from <h1>
+
+console.log(h1Ele.previousSibling);
+console.log(h1Ele.nextSibling);
+  
+  // get all sibling:: get children of parent
+  console.log(h1Ele.parentElement.children);
+  // [...h1Ele.parentElement.children].forEach( function (el) {
+    // if (el !== h1Ele) el.style.transform = 'scale(0.5)';
+  // });
 */
