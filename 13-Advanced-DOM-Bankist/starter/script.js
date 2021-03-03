@@ -101,11 +101,36 @@ console.log(h1Ele.nextSibling);
   
   // get all sibling:: get children of parent
   console.log(h1Ele.parentElement.children);
-  [...h1Ele.parentElement.children].forEach( function (el) {
-    if (el !== h1Ele) el.style.transform = 'scale(0.5)';
-  });
+  // [...h1Ele.parentElement.children].forEach( function (el) {
+    // if (el !== h1Ele) el.style.transform = 'scale(0.5)';
+  // });
 
 
+
+const tabsBtns = document.querySelectorAll('.operations__tab');
+const tabsContent = document.querySelectorAll('.operations__content');
+const tabsContainer = document.querySelector('.operations__tab-container');
+
+tabsContainer.addEventListener('click', function(e) {
+  const clicked = e.target.closest('.operations__tab');
+  // console.log(clicked);
+
+  // Gaurd clause
+  if (!clicked) return;
+
+  // removed previous/All btns
+  tabsBtns.forEach( t => t.classList.remove('operations__tab--active'));
+  // Active the clicked tabBtn 
+  clicked.classList.add('operations__tab--active');
+
+  // removed previous container
+  console.log(clicked.dataset.tab); // digit
+  tabsContent.forEach( c => c.classList.remove('operations__content--active'));
+  
+  // Active the tab container
+  document.querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
 
