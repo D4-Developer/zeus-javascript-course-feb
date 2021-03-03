@@ -177,6 +177,7 @@ btnScrollTo.addEventListener('click', function(e){
 
 
 
+/*
 // Types of Event & Ecent Handlers
 
 const h1 = document.querySelector('h1');
@@ -203,5 +204,43 @@ h1.addEventListener('mouseenter', alertH1);
 
 // after 5 seconds there will be no alert.
 setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 5000);
+*/
 
 
+
+// Event propagation (Bubbling & Capturing)
+// addEvenetListener() by default will only listening for Bubbling
+// rgb(255,255,255)
+const randomInt = (min, max) => 
+  Math.floor(min + Math.random() * (max - min + 1));
+
+const randomColor = () => `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+console.log(randomColor);
+
+document.querySelector('.nav__link').addEventListener('click', function(e) {
+  this.style.backgroundColor = randomColor();
+  console.log('LINK', e.target, e.currentTarget);
+  console.log(this === e.currentTarget); // TRUE //
+
+  // STOP Propagation
+  // event will not propagate back to root element
+  // e.stopPropagation(); // so parent element didn't change the color, 
+});
+
+document.querySelector('.nav__links').addEventListener('click', function(e) {
+  this.style.backgroundColor = randomColor();
+  console.log('CONTAINER', e.target, e.currentTarget);
+}, false /* byDefault */);
+
+
+// capturing phase ex. for 3rd paramatere 
+document.querySelector('.nav').addEventListener('click', function(e) {
+  this.style.backgroundColor = randomColor();
+  console.log('NAV', e.target, e.currentTarget);
+  e.stopPropagation();
+}, true);
+// this will be first log(); :) NAV
+// 2nd will be original targeted :) link
+// 3rd will be :) Container
+// e.stopPropagation(); if use this in capturing element:) 
+// no one after this capturing element will be listeninig for event....
