@@ -38,6 +38,7 @@ document.addEventListener('keydown', function (e) {
 
 
 
+/*
 console.log(document.documentElement); // returns entire document from HTML tag
 console.log(document.head); // returns head element
 console.log(document.body); // returns body element
@@ -134,3 +135,40 @@ logo.classList.contains('');
 
 // this will cleared all entries in the classList & set the new className.
 logo.className = 'newClass';
+*/
+
+
+//
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function(e){
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+  // console.log(s1coords.y);
+
+  // 1.) but not accurate 
+  // scroll(0, s1coords.y); // not accurate of scrolling to .y;
+
+  // console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+  // console.log('width/height of client viewport: ', 
+  //   document.documentElement.clientWidth,
+  //   document.documentElement.clientHeight
+  // );
+
+  // 2.) scrollTo(x,y)
+  // window.scrollTo(s1coords.left, s1coords.top); // not accurate
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset); // instant scrolling
+
+  // // passing the object.... for smooth behavior
+  // window.scrollTo( {
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth'
+  // } ); 'smooth scrolling'
+
+  // 3.) a morden way to scroll to a specific element;
+  section1.scrollIntoView( {behavior: 'smooth'} );
+});
