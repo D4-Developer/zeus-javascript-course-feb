@@ -8,6 +8,8 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
+const section1 = document.querySelector('#section--1');
+
 const openModal = function (e) {
   e.preventDefault();
   modal.classList.remove('hidden');
@@ -103,7 +105,7 @@ tabsContainer.addEventListener('click', function(e) {
 const nav = document.querySelector('.nav');
 
 const handleHover = function (e) {
-  console.log(this);
+  // console.log(this);
 
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
@@ -127,6 +129,65 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+
+
+// Sticky navigation 
+
+// 1.)
+// const initialCoords = section1.getBoundingClientRect();
+// // this should be avoided
+// window.addEventListener('scroll', function(e) {
+//   // console.log(e);
+//   if (window.scrollY > initialCoords.top)
+//     nav.classList.add('sticky');
+//   else nav.classList.remove('sticky');
+
+// })
+
+// 2.) Interactive Observer API
+
+// const obsCallback = function (entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// };
+
+// const obsOptions = {
+//   root: null,
+//   // 10% intersection with viewport when scrolling up/down, the callback function will be executed
+//   // so if 10% of content is visible on viewport:) callback fn will be executed
+//   // threshold: 0.1, 
+
+//   threshold: [0, 0.2]
+//   // 0: getting in & out of target from viewport :) callback fn executed
+//   // 1: if target is visible 100%:) callback fn executed 
+// };
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// observer.observe(section1);
+
+const stickyNav = function(entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting)
+    nav.classList.add('sticky');
+  else  nav.classList.remove('sticky');
+}
+
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  // when .header is completely not inside viewport callback fn will be executed
+  threshold: 0,
+  rootMargin: `-${navHeight}px`
+});
+
+headerObserver.observe(header);
+
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
 
