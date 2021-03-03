@@ -169,7 +169,7 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 
 const stickyNav = function(entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
 
   if (!entry.isIntersecting)
     nav.classList.add('sticky');
@@ -187,6 +187,68 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 
 headerObserver.observe(header);
+
+
+
+// Reveal the sections on scolling
+const allSection = document.querySelectorAll('.section');
+
+function revealSection(entries, observer) {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove('section--hidden');
+  
+  // performance improvement
+  observer.unobserve(entry.target);
+}
+
+const sectionOptions = {
+  root: null,
+  threshold: 0.20,
+}
+
+const sectionObserver = new IntersectionObserver(
+  revealSection, sectionOptions
+);
+
+allSection.forEach( (section) => {
+  section.classList.add('section--hidden');
+  sectionObserver.observe(section)
+});
+
+
+// Lazy-loading of images;
+// cssSelector[X] specifies those element having X attribute 
+const imgTargets = document.querySelectorAll('img[data-src]'); // 3 image tag having [data-src] defined
+console.log(imgTargets);
+
+function loadImg(entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) return;
+
+  // Replace src with data-src;
+  entry.target.src = entry.target.dataset.src;
+
+  // load needed after placing target.src to get 
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+} 
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: '50px'
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
 
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
