@@ -32,6 +32,44 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+///////////////////////////////////////
+// Page-Navigation;
+
+// not performance efficient if we have more element....
+// because it is making copy of function passed in FOREACH( (){} );
+// document.querySelectorAll('.nav__link').forEach( function (el) {
+//   el.addEventListener( 'click', function(e) {
+//     e.preventDefault(); // for removing default immediate scrolling
+//     console.log('link');
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+//   });
+// });
+
+// Efficient solution....()
+// 1. we will add listener to parent of All element
+// 2. Determine what element originated the event (check for required classList)
+
+document.querySelector('.nav__links')
+  .addEventListener('click', function(e) {
+    console.log(e.target);
+
+    // Matching strategy
+    if (e.target.classList.contains('nav__link')) {
+      console.log('LINK');
+      e.preventDefault();
+
+      // will not work because this = .nav__link(<ul>)
+      // because, we need <li> class ;; so e.target.getAttribute('href')
+      // const id = this.getAttribute('href'); 
+      const id = e.target.getAttribute('href'); 
+      console.log(id);
+      document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+    }
+  });
+
+
 
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
@@ -208,6 +246,7 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 5000);
 
 
 
+/*
 // Event propagation (Bubbling & Capturing)
 // addEvenetListener() by default will only listening for Bubbling
 // rgb(255,255,255)
@@ -230,7 +269,7 @@ document.querySelector('.nav__link').addEventListener('click', function(e) {
 document.querySelector('.nav__links').addEventListener('click', function(e) {
   this.style.backgroundColor = randomColor();
   console.log('CONTAINER', e.target, e.currentTarget);
-}, false /* byDefault */);
+}, false); // byDefault false;
 
 
 // capturing phase ex. for 3rd paramatere 
@@ -244,3 +283,5 @@ document.querySelector('.nav').addEventListener('click', function(e) {
 // 3rd will be :) Container
 // e.stopPropagation(); if use this in capturing element:) 
 // no one after this capturing element will be listeninig for event....
+
+*/
