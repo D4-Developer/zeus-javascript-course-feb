@@ -138,6 +138,7 @@ logo.className = 'newClass';
 */
 
 
+/*
 //
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
@@ -172,3 +173,35 @@ btnScrollTo.addEventListener('click', function(e){
   // 3.) a morden way to scroll to a specific element;
   section1.scrollIntoView( {behavior: 'smooth'} );
 });
+*/
+
+
+
+// Types of Event & Ecent Handlers
+
+const h1 = document.querySelector('h1');
+
+// 1.)
+// h1.addEventListener('mouseenter', alertH1);
+
+// // 2.)
+// h1.onmouseenter = function(e) {
+//   alert('addEventListener: Great! you are reading the heading :D');
+// };
+
+
+// removes eventListener()
+
+const alertH1 = function(e) {
+  alert('addEventListener: Great! you are reading the heading :D');
+  h1.removeEventListener('mouseenter', alertH1);
+  // only 1 time mouseenter will execute;
+  // after that we are removing that eventListener, so it will never executed
+};
+
+h1.addEventListener('mouseenter', alertH1);
+
+// after 5 seconds there will be no alert.
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 5000);
+
+
