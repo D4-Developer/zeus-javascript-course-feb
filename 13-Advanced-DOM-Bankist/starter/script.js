@@ -223,18 +223,18 @@ allSection.forEach( (section) => {
 // Lazy-loading of images;
 // cssSelector[X] specifies those element having X attribute 
 const imgTargets = document.querySelectorAll('img[data-src]'); // 3 image tag having [data-src] defined
-console.log(imgTargets);
+// console.log(imgTargets);
 
 function loadImg(entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
 
   if (!entry.isIntersecting) return;
 
   // Replace src with data-src;
   entry.target.src = entry.target.dataset.src;
 
-  // load needed after placing target.src to get 
+  // load needed after placing target.src to remove the blur when full img is loaded
   entry.target.addEventListener('load', function () {
     entry.target.classList.remove('lazy-img');
   });
@@ -245,10 +245,86 @@ function loadImg(entries, observer) {
 const imgObserver = new IntersectionObserver(loadImg, {
   root: null,
   threshold: 0,
-  rootMargin: '50px'
+  rootMargin: '200px'
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
+
+
+
+// Slider of reviews
+// translateX property ::::
+//    0%,  100%,  200% : 1st slider in viewport
+// -100%,    0%,  100% : 2nd slider in viewport
+// -200%, -100%,    0% : 3rd slider in viewport
+function slider() {
+
+  const slides = document.querySelectorAll('.slide');
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const dots = document.querySelector('.dots');
+  
+  // console.log(sliders);
+  let counter = 0;
+  
+  function translateSlides(offset) {
+    slides.forEach( (slide, i) => {
+      slide.style.transform = `translateX(${100 * (i - offset)}%)`;
+    })
+  };
+    
+  function updateCounter(val) {
+    counter = counter + val;
+    if (counter === slides.length) counter = 0;
+    if (counter === -1) counter = slides.length - 1;
+    translateSlides(counter);
+    activateDot(counter);
+  }
+  
+  btnLeft.addEventListener('click', function (e) {
+    updateCounter(-1);
+  });
+  
+  btnRight.addEventListener('click', function (e) {
+    updateCounter(+1);
+  });
+  
+  
+  // slider btns translate
+  // create dots....
+  
+  function createDots() {
+    slides.forEach( (_,i) => {
+      const btn = `<button class="dots__dot" data-slide="${i}"></button>`;
+      dots.insertAdjacentHTML('beforeend', btn);
+    });
+  }
+  
+  // Activate dots
+  function activateDot(slide) {
+    document.querySelectorAll('.dots__dot')
+    .forEach( dot => dot.classList.remove('dots__dot--active'));
+    document.querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .classList.add('dots__dot--active');
+  }
+  
+  dots.addEventListener('click', function(e) {
+    if (e.target.classList.contains('dots__dot')) {
+      const {slide} = e.target.dataset;
+      translateSlides(slide);
+      activateDot(slide);
+      counter = Number(slide);
+    }
+  });
+
+  function initSlider() {
+    createDots();
+    activateDot(0);
+    translateSlides(0);
+  }
+  initSlider();
+}
+slider();
 
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
 ///// ::::::::::::::::::: ///// ::::::::::::::::::::: /////
