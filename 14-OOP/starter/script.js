@@ -55,3 +55,33 @@ console.log(jonas.newProperty, darshan.newProperty); // new on prototype;
 
 console.log(jonas.hasOwnProperty('firstName')); // True
 console.log(jonas.hasOwnProperty('newProperty')); // False
+
+
+
+
+console.log(jonas.__proto__); // Person.prototype 
+// Object.prototype (top of the protoype chain)
+console.log(jonas.__proto__.__proto__);// Object.prototype
+console.log(jonas.__proto__.__proto__.__proto__); // null
+
+console.log(Person.prototype.constructor);
+
+const arr = [1,2,2,5,10,6,5,6]; // === new Array();
+console.log(arr.__proto__ === Array.prototype); // True
+
+console.log(arr.__proto__.__proto__);
+console.log(arr.__proto__.__proto__.__proto__); // null
+
+
+// THIS IS INSANE
+// From now all array can use this .unique method 
+Array.prototype.unique = function () {
+    return [...new Set(this)];
+}
+
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+console.dir(h1);
+
+console.dir(x => x+1);
