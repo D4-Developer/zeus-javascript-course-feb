@@ -1,6 +1,6 @@
 'use strict';
 
-/* 
+
 const Person = function (firstName, birthYear) {
     console.log(this);
 
@@ -74,6 +74,16 @@ console.log(arr.__proto__.__proto__);
 console.log(arr.__proto__.__proto__.__proto__); // null
 
 
+Person.hey = function () {
+    console.log('Hey there 👋');
+    console.log(this);
+};
+Person.hey();
+
+// jonas.hey(); // -- error --
+
+
+
 // THIS IS INSANE
 // From now all array can use this .unique method 
 Array.prototype.unique = function () {
@@ -87,7 +97,6 @@ console.dir(h1);
 
 console.dir(x => x+1);
 
-*/
 
 
 
@@ -123,6 +132,12 @@ class PersonC1 {
     calcAge() {
         console.log(2021 - this.birthYear);
     }
+
+    // Static method
+    static hey() {
+        console.log('Hey there 👋');
+        console.log(this);
+    }
 }
 
 const p1 = new PersonC1('jessica davis', 1996);
@@ -130,18 +145,21 @@ console.log(p1);
 p1.calcAge();
 console.log(p1.age);
 
+
 PersonC1.prototype.greet = function() {
     console.log(`hey ${this.fullName}`);
 }
 p1.greet();
 
-
+// STATIC method call
+PersonC1.hey();
+// p1.hey(); // -- error --
 
 // 1. Classes are NOT hoisted :: we must use after it's declaration
 // 2. Class are first-class citizens
 // 3. Classes are always executed in strict-mode
 
-const walter = new PersonC1('Walter', 1965); // cause the alert 
+// const walter = new PersonC1('Walter', 1965); // cause the alert 
 
 const account = {
     owner: 'Jonas',
@@ -159,3 +177,4 @@ const account = {
 console.log(account.latest); // don't write account.latest() 
 account.latest = 50;
 console.log(account.movements);
+
