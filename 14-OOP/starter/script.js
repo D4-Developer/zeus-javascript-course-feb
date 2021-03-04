@@ -1,5 +1,6 @@
 'use strict';
 
+/* 
 const Person = function (firstName, birthYear) {
     console.log(this);
 
@@ -85,3 +86,44 @@ const h1 = document.querySelector('h1');
 console.dir(h1);
 
 console.dir(x => x+1);
+
+*/
+
+
+
+////// ::::::::::::::::::  ES6 Class :::::::::::::::::::::: //////
+////// ::::::::::::::::::  ES6 Class :::::::::::::::::::::: //////
+// as classes are special kind of function
+
+
+// class expression
+const PersonCE = class {}
+
+// class declaration
+class PersonC1 {
+    constructor(firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+
+    // Methods will be added to .prototype property
+    calcAge() {
+        console.log(2021 - this.birthYear);
+    }
+}
+
+const p1 = new PersonC1('jessica', 1996);
+console.log(p1);
+
+p1.calcAge();
+
+PersonC1.prototype.greet = function() {
+    console.log(`hey ${this.firstName}`);
+}
+p1.greet();
+
+
+
+// 1. Classes are NOT hoisted :: we must use after it's declaration
+// 2. Class are first-class citizens
+// 3. Classes are always executed in strict-mode
