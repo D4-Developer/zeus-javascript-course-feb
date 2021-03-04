@@ -8,9 +8,9 @@ const Person = function (firstName, birthYear) {
     this.birthYear = birthYear;
 
     // Never do this for class methods
-    this.calcAge = function () {
-        console.log(2037 - this.birthYear);
-    }
+    // this.calcAge = function () {
+    //     console.log(2037 - this.birthYear);
+    // }
 }
 
 // use new keyword to make a instance of class
@@ -29,3 +29,29 @@ console.log(darshan, tirth);
 const a = 'ABC';
 // return True / False
 console.log(a instanceof Person); // False
+
+
+
+// Prototypes
+console.log(Person.prototype);
+Person.prototype.calcAge = function () {
+    console.log(2021 - this.birthYear);
+}
+
+jonas.calcAge();
+darshan.calcAge();
+tirth.calcAge();
+
+console.log(jonas.__proto__);
+console.log(jonas.__proto__ === Person.prototype); // True
+
+console.log(Person.prototype.isPrototypeOf(jonas)); // True
+console.log(Person.prototype.isPrototypeOf(Person)); // False
+
+
+// adding new property to .prototype
+Person.prototype.newProperty = 'new on prototype';
+console.log(jonas.newProperty, darshan.newProperty); // new on prototype;
+
+console.log(jonas.hasOwnProperty('firstName')); // True
+console.log(jonas.hasOwnProperty('newProperty')); // False
