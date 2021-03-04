@@ -1,6 +1,7 @@
 'use strict';
 
 
+/*
 const Person = function (firstName, birthYear) {
     console.log(this);
 
@@ -81,9 +82,10 @@ Person.hey = function () {
 Person.hey();
 
 // jonas.hey(); // -- error --
+*/
 
 
-
+/*
 // THIS IS INSANE
 // From now all array can use this .unique method 
 Array.prototype.unique = function () {
@@ -97,9 +99,11 @@ console.dir(h1);
 
 console.dir(x => x+1);
 
+*/
 
 
 
+/*
 ////// ::::::::::::::::::  ES6 Class :::::::::::::::::::::: //////
 ////// ::::::::::::::::::  ES6 Class :::::::::::::::::::::: //////
 // as classes are special kind of function
@@ -177,4 +181,32 @@ const account = {
 console.log(account.latest); // don't write account.latest() 
 account.latest = 50;
 console.log(account.movements);
+*/
 
+
+
+const PersonProto = {
+    calcAge() {
+        console.log(2021 - this.birthYear);
+    },
+
+    init (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven); // we have calcAge() inside <prototype>: property
+
+steven.name = 'Steven';
+steven.birthYear = 2002;
+
+steven.calcAge(); // 19 
+
+console.log(steven.__proto__);
+console.log(PersonProto); // same as above statement: steven.__proto__ === PersonProto
+
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1979);
+sarah.calcAge();
