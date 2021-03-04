@@ -579,3 +579,20 @@ console.log(h1Ele.nextSibling);
     // if (el !== h1Ele) el.style.transform = 'scale(0.5)';
   // });
 */
+
+
+//  Other DOM Events
+// will not wait for media files
+document.addEventListener('DOMContentLoaded', function(e) {
+  console.log('HTML,css parsed and DOME tree built', e);
+});
+
+window.addEventListener('load', function(e) {
+  console.log('Page fully loaded', e);
+})
+
+window.addEventListener('beforeunload', function(e) {
+  // e.preventDefault(); // requires in some browser
+  console.log(e);
+  e.returnValue = '';
+});
