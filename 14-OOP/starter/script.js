@@ -101,24 +101,37 @@ const PersonCE = class {}
 
 // class declaration
 class PersonC1 {
-    constructor(firstName, birthYear) {
-        this.firstName = firstName;
+    constructor(fullName, birthYear) {
+        this.fullName = fullName; // this will invoke setter
         this.birthYear = birthYear;
     }
 
     // Methods will be added to .prototype property
+    set fullName(name) {
+        if (name.includes(' ')) this._fullName = name;
+        else alert(`${name} is not a full name`)
+    }
+
+    get fullName() { 
+        return this._fullName;
+    }
+    
+    get age() {
+        return 2021 - this.birthYear;
+    }
+    
     calcAge() {
         console.log(2021 - this.birthYear);
     }
 }
 
-const p1 = new PersonC1('jessica', 1996);
+const p1 = new PersonC1('jessica davis', 1996);
 console.log(p1);
-
 p1.calcAge();
+console.log(p1.age);
 
 PersonC1.prototype.greet = function() {
-    console.log(`hey ${this.firstName}`);
+    console.log(`hey ${this.fullName}`);
 }
 p1.greet();
 
@@ -127,3 +140,22 @@ p1.greet();
 // 1. Classes are NOT hoisted :: we must use after it's declaration
 // 2. Class are first-class citizens
 // 3. Classes are always executed in strict-mode
+
+const walter = new PersonC1('Walter', 1965); // cause the alert 
+
+const account = {
+    owner: 'Jonas',
+    movements: [200,300,120,500],
+
+    get latest() {
+        return this.movements.slice(-1).pop();
+    },
+
+    set latest(now) {
+        this.movements.push(now);
+    }
+}
+
+console.log(account.latest); // don't write account.latest() 
+account.latest = 50;
+console.log(account.movements);
