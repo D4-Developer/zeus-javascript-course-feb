@@ -185,6 +185,8 @@ console.log(account.movements);
 
 
 
+/*
+//  Object.create();
 const PersonProto = {
     calcAge() {
         console.log(2021 - this.birthYear);
@@ -210,3 +212,49 @@ console.log(PersonProto); // same as above statement: steven.__proto__ === Perso
 const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979);
 sarah.calcAge();
+*/
+
+
+
+///////////////////////////////////////
+// Inheritance Between "Classes": Constructor Functions
+
+const PersonI = function (firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+};
+  
+PersonI.prototype.calcAge = function () {
+    console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+    PersonI.call(this, firstName, birthYear); // :::::::::::::::::
+    this.course = course;
+};
+
+// Linking prototypes
+// this is not the target as now student.prototype referce to PersonI.prototype
+// Student.prototype = PersonI.prototype; 
+console.log(Student.prototype); // = Object.
+Student.prototype = Object.create(PersonI.prototype);
+console.log(Student.prototype); // = PersonI.prototype / Object.
+
+Student.prototype.introduce = function () { // ::::::::::::::::
+console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student('Mike', 2020, 'Computer Science');
+mike.introduce();
+mike.calcAge();
+
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+
+console.log(mike instanceof Student); // T
+console.log(mike instanceof PersonI); // T :: see 240 line
+console.log(mike instanceof Object); // Class chain has Object in last
+
+console.dir(Student.prototype.constructor); // = 
+Student.prototype.constructor = Student; // fixes as constuctor = PersonI
+console.dir(Student.prototype.constructor);
