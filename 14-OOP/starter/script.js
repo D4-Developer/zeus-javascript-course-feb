@@ -331,6 +331,7 @@ martha.calcAge();
 ///////////////////////////////////////
 // Inheritance Between "Classes": Object.create
 
+/*
 const PersonProto = {
     calcAge() {
         console.log(2021 - this.birthYear);
@@ -358,3 +359,50 @@ jay.init('Jay', 1999, 'Computer science');
 
 jay.introduce();
 jay.calcAge();
+*/
+
+
+
+//////////////////////////////////////////////////
+//  Class Example
+
+class Account {
+    constructor(owner, currency, pin) {
+        this.owner = owner;
+        this.currency = currency;
+        this.pin = pin;
+        this.movements = [];
+        this.locale = navigator.language;
+
+        console.log(`Thanks for opening an account, ${owner}.`);
+    }
+
+    // Public interface
+    deposit(val) {
+        this.movements.push(val);
+    }
+    withDraw(val) {
+        this.deposit(-val);
+    }
+
+    approveLoan(val) {
+        return true;
+    }
+    requwstLoan(val) {
+        if (this.approveLoan(val)) {
+            this.deposit(val);
+            console.log('Loan Approved');
+        }
+    }
+}
+
+const acc1 = new Account('Jonas', 'EUR', 1111);
+console.log(acc1);
+
+// acc1.movements.push(250);
+// acc1.movements.push(-140);
+
+acc1.deposit(250);
+acc1.withDraw(150);
+acc1.requwstLoan(1000);
+acc1.approveLoan(1000); // this should not be a public API
