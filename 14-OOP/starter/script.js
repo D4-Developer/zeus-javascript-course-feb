@@ -240,7 +240,7 @@ console.log(Student.prototype); // = Object.
 Student.prototype = Object.create(PersonI.prototype);
 console.log(Student.prototype); // = PersonI.prototype / Object.
 
-Student.prototype.introduce = function () { // ::::::::::::::::
+Student.prototype.introduce = function () { // :::::::::::::::: 
 console.log(`My name is ${this.firstName} and I study ${this.course}`);
 };
 
