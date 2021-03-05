@@ -86,9 +86,49 @@ EvalError.prototype.chargeBattery = function () {
 
 
 const tesla = new EV('Tesla', 120, 23);
-tesla.chargeBattery(90);
-tesla.accelerate();
-tesla.brake();
+// tesla.chargeBattery(90);
+// tesla.accelerate();
+// tesla.brake();
 
 
 
+// #4
+
+class EVCl extends CarCl {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+
+    console.log(`${this.make} is going at ${this.speed} km/h,
+     with a charge of ${this.#charge}`);
+
+    return this;
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+    return this;
+  }
+
+}
+
+const rivian = new EVCl('Rivian', 120, 23);
+console.log(rivian);
+// console.log(rivian.#charge); // -- error --
+
+rivian.accelerate().accelerate().accelerate().brake()
+  .chargeBattery(50).accelerate();
+
+console.log(rivian.speedUS);
