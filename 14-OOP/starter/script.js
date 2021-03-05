@@ -445,6 +445,7 @@ acc1.withDraw(150);
 acc1.requwstLoan(1000);
 // acc1.approveLoan(1000); // this should not be a public API
 
+acc1.getMovements();
 console.log(acc1);
 Account.helper();
 
